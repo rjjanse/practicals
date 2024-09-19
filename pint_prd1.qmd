@@ -5,18 +5,20 @@ author: "Roemer J. Janse"
 date: today
 format:
     html:
-        theme: flatly
-        toc: true
-        number-sections: true
-        code-line-numbers: true
         other-links:
         - text: EPI-B
           href: https://www.lumc.nl/en/afdelingen/Clinical-Epidemiology/epidemioloog-b/
           target: _blank
         code-links:
-        - text: Source 
+        - text: Source code
           icon: file-code
           href: pint-prd1.qmd
+        theme:
+            light: flatly
+            dark: darkly
+        toc: true
+        number-sections: true
+        code-line-numbers: true
 ---
 
 # Preface
