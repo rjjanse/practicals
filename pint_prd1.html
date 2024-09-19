@@ -142,7 +142,7 @@ window.Quarto = {
   <li><a href="#final-words" id="toc-final-words" class="nav-link" data-scroll-target="#final-words"><span class="header-section-number">7</span> Final words</a></li>
   <li><a href="#postscript" id="toc-postscript" class="nav-link" data-scroll-target="#postscript"><span class="header-section-number">8</span> Postscript</a></li>
   </ul>
-<div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://www.lumc.nl/en/afdelingen/Clinical-Epidemiology/epidemioloog-b/" target="_blank"><i class="bi bi-link-45deg"></i>EPI-B</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="pint-prd1.qmd"><i class="bi bi-file-code"></i>Source code</a></li></ul></div></nav>
+<div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://www.lumc.nl/en/afdelingen/Clinical-Epidemiology/epidemioloog-b/" target="_blank"><i class="bi bi-link-45deg"></i>EPI-B</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/rjjanse/practicals/blob/main/pint/pint_prd1.qmd"><i class="bi bi-file-code"></i>Source code</a></li></ul></div></nav>
 </div>
 <main class="content page-columns page-full" id="quarto-document-content">
 
@@ -848,18 +848,18 @@ Slope: 1.000</code></pre>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># Validate the model</span></span>
 <span id="cb20-2"><a href="#cb20-2"></a><span class="fu">validate</span>(fit_rms)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>          index.orig training   test optimism index.corrected  n
-Dxy           0.5303   0.5351 0.5247   0.0104          0.5198 40
-R2            0.2726   0.2794 0.2666   0.0128          0.2598 40
-Intercept     0.0000   0.0000 0.0031  -0.0031          0.0031 40
-Slope         1.0000   1.0000 0.9730   0.0270          0.9730 40
-Emax          0.0000   0.0000 0.0066   0.0066          0.0066 40
-D             0.2243   0.2306 0.2188   0.0119          0.2124 40
-U            -0.0009  -0.0009 0.0001  -0.0011          0.0001 40
-Q             0.2252   0.2316 0.2186   0.0129          0.2123 40
-B             0.1879   0.1862 0.1892  -0.0029          0.1908 40
-g             1.2470   1.2716 1.2284   0.0432          1.2038 40
-gp            0.2538   0.2563 0.2507   0.0056          0.2482 40</code></pre>
+<pre><code>          index.orig training    test optimism index.corrected  n
+Dxy           0.5303   0.5384  0.5250   0.0134          0.5169 40
+R2            0.2726   0.2809  0.2673   0.0136          0.2589 40
+Intercept     0.0000   0.0000 -0.0103   0.0103         -0.0103 40
+Slope         1.0000   1.0000  0.9622   0.0378          0.9622 40
+Emax          0.0000   0.0000  0.0102   0.0102          0.0102 40
+D             0.2243   0.2322  0.2194   0.0128          0.2115 40
+U            -0.0009  -0.0009  0.0003  -0.0012          0.0003 40
+Q             0.2252   0.2331  0.2191   0.0140          0.2112 40
+B             0.1879   0.1862  0.1891  -0.0029          0.1907 40
+g             1.2470   1.2797  1.2319   0.0477          1.1993 40
+gp            0.2538   0.2575  0.2512   0.0063          0.2475 40</code></pre>
 </div>
 </div>
 <p>How do we interpret this output? The <code>validate()</code> function applies resampling, which is a method to account for overfitting, with the results being printed in the ‘index.corrected’ column. However, if we are just interested in the apparent performance, we can just look at ‘index.orig’. To calculate the C-statistic, we can use <span class="math inline">\(c = \frac{Dxy}{2} + 0.5\)</span>. In our case, the C-statistic would be:</p>
@@ -883,8 +883,8 @@ gp            0.2538   0.2563 0.2507   0.0056          0.2482 40</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-n=2159   Mean absolute error=0.006   Mean squared error=5e-05
-0.9 Quantile of absolute error=0.013</code></pre>
+n=2159   Mean absolute error=0.006   Mean squared error=6e-05
+0.9 Quantile of absolute error=0.014</code></pre>
 </div>
 </div>
 </section>
@@ -1060,26 +1060,26 @@ coxph(formula = Surv(time, status) ~ age + sex + ns(wt.loss,
 
   n= 228, number of events= 159 
 
-                                   coef exp(coef) se(coef)      z Pr(&gt;|z|)   
-age                             0.01798   1.01815  0.00948  1.897  0.05782 . 
-sex                            -0.54426   0.58027  0.17156 -3.172  0.00151 **
-ns(wt.loss, knots = c(0, 17))1 -0.34369   0.70915  0.48977 -0.702  0.48284   
-ns(wt.loss, knots = c(0, 17))2 -2.22763   0.10778  1.67412 -1.331  0.18331   
-ns(wt.loss, knots = c(0, 17))3 -0.60040   0.54859  0.83999 -0.715  0.47475   
+                                    coef exp(coef)  se(coef)      z Pr(&gt;|z|)   
+age                             0.017078  1.017224  0.009475  1.802  0.07147 . 
+sex                            -0.540593  0.582403  0.171566 -3.151  0.00163 **
+ns(wt.loss, knots = c(0, 17))1 -0.154563  0.856790  0.489562 -0.316  0.75222   
+ns(wt.loss, knots = c(0, 17))2 -2.830153  0.059004  1.689302 -1.675  0.09387 . 
+ns(wt.loss, knots = c(0, 17))3 -1.213036  0.297293  0.982152 -1.235  0.21680   
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
                                exp(coef) exp(-coef) lower .95 upper .95
-age                               1.0181     0.9822  0.999404    1.0372
-sex                               0.5803     1.7233  0.414574    0.8122
-ns(wt.loss, knots = c(0, 17))1    0.7091     1.4101  0.271546    1.8520
-ns(wt.loss, knots = c(0, 17))2    0.1078     9.2778  0.004051    2.8679
-ns(wt.loss, knots = c(0, 17))3    0.5486     1.8229  0.105743    2.8461
+age                               1.0172     0.9831  0.998509    1.0363
+sex                               0.5824     1.7170  0.416089    0.8152
+ns(wt.loss, knots = c(0, 17))1    0.8568     1.1671  0.328215    2.2366
+ns(wt.loss, knots = c(0, 17))2    0.0590    16.9481  0.002153    1.6174
+ns(wt.loss, knots = c(0, 17))3    0.2973     3.3637  0.043369    2.0380
 
-Concordance= 0.605  (se = 0.025 )
-Likelihood ratio test= 17.31  on 5 df,   p=0.004
-Wald test            = 16.53  on 5 df,   p=0.005
-Score (logrank) test = 16.96  on 5 df,   p=0.005</code></pre>
+Concordance= 0.611  (se = 0.025 )
+Likelihood ratio test= 18.49  on 5 df,   p=0.002
+Wald test            = 17.6  on 5 df,   p=0.003
+Score (logrank) test = 18.11  on 5 df,   p=0.003</code></pre>
 </div>
 </div>
 <p>We see that weight loss has three coefficients, one for the lowest value through 0 (1), one for 0 through 10 (2), and one for 10 through the highest value (3). Also note that we do not have an intercept: to calculate the final predicted risk, we need to use the baseline hazard instead of the intercept. However, the baseline hazard is different for each timepoint.</p>
@@ -1088,7 +1088,7 @@ Score (logrank) test = 16.96  on 5 df,   p=0.005</code></pre>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="co"># Retrieve baseline hazard at 2 years</span></span>
 <span id="cb38-2"><a href="#cb38-2"></a><span class="fu">filter</span>(<span class="fu">basehaz</span>(fit), time <span class="sc">==</span> <span class="fl">365.25</span> <span class="sc">*</span> <span class="dv">2</span>)[[<span class="st">"hazard"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.14364</code></pre>
+<pre><code>[1] 2.145641</code></pre>
 </div>
 </div>
 <p>Discrimination of this model can be calculated using Harrell’s C-statistic: * The function <code>cindex()</code> from the <code>{dynpred}</code> package (does not require model fit, but does require development formula). * The function <code>rcorr.cens()</code> from the <code>{Hmisc}</code> package (does not require model fit, but may be slow). * The function <code>cIndex()</code> from the <code>{intsurv}</code> package.</p>
