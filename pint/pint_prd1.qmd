@@ -12,7 +12,7 @@ format:
         code-links:
         - text: Source code
           icon: file-code
-          href: pint-prd1.qmd
+          href: https://github.com/rjjanse/practicals/blob/main/pint/pint_prd1.qmd
         theme:
             light: flatly
             dark: darkly
