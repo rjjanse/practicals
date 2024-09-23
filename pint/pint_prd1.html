@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Roemer J. Janse">
-<meta name="dcterms.date" content="2024-09-19">
+<meta name="dcterms.date" content="2024-09-23">
 
 <title>PINT - Prediction Practical 1</title>
 <style>
@@ -166,7 +166,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 19, 2024</p>
+      <p class="date">September 23, 2024</p>
     </div>
   </div>
   
@@ -849,17 +849,17 @@ Slope: 1.000</code></pre>
 <span id="cb20-2"><a href="#cb20-2"></a><span class="fu">validate</span>(fit_rms)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          index.orig training    test optimism index.corrected  n
-Dxy           0.5303   0.5384  0.5250   0.0134          0.5169 40
-R2            0.2726   0.2809  0.2673   0.0136          0.2589 40
-Intercept     0.0000   0.0000 -0.0103   0.0103         -0.0103 40
-Slope         1.0000   1.0000  0.9622   0.0378          0.9622 40
-Emax          0.0000   0.0000  0.0102   0.0102          0.0102 40
-D             0.2243   0.2322  0.2194   0.0128          0.2115 40
-U            -0.0009  -0.0009  0.0003  -0.0012          0.0003 40
-Q             0.2252   0.2331  0.2191   0.0140          0.2112 40
-B             0.1879   0.1862  0.1891  -0.0029          0.1907 40
-g             1.2470   1.2797  1.2319   0.0477          1.1993 40
-gp            0.2538   0.2575  0.2512   0.0063          0.2475 40</code></pre>
+Dxy           0.5303   0.5404  0.5251   0.0154          0.5149 40
+R2            0.2726   0.2820  0.2670   0.0150          0.2576 40
+Intercept     0.0000   0.0000 -0.0023   0.0023         -0.0023 40
+Slope         1.0000   1.0000  0.9592   0.0408          0.9592 40
+Emax          0.0000   0.0000  0.0097   0.0097          0.0097 40
+D             0.2243   0.2329  0.2191   0.0138          0.2105 40
+U            -0.0009  -0.0009  0.0005  -0.0014          0.0005 40
+Q             0.2252   0.2339  0.2187   0.0152          0.2100 40
+B             0.1879   0.1855  0.1891  -0.0036          0.1914 40
+g             1.2470   1.2839  1.2323   0.0516          1.1954 40
+gp            0.2538   0.2578  0.2512   0.0066          0.2472 40</code></pre>
 </div>
 </div>
 <p>How do we interpret this output? The <code>validate()</code> function applies resampling, which is a method to account for overfitting, with the results being printed in the ‘index.corrected’ column. However, if we are just interested in the apparent performance, we can just look at ‘index.orig’. To calculate the C-statistic, we can use <span class="math inline">\(c = \frac{Dxy}{2} + 0.5\)</span>. In our case, the C-statistic would be:</p>
@@ -883,8 +883,8 @@ gp            0.2538   0.2575  0.2512   0.0063          0.2475 40</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-n=2159   Mean absolute error=0.006   Mean squared error=6e-05
-0.9 Quantile of absolute error=0.014</code></pre>
+n=2159   Mean absolute error=0.005   Mean squared error=3e-05
+0.9 Quantile of absolute error=0.009</code></pre>
 </div>
 </div>
 </section>
@@ -963,11 +963,14 @@ n=2159   Mean absolute error=0.006   Mean squared error=6e-05
 <p>In the lung dataset, we can see that we have more cases than non-cases. In this case, we look at the number of non-cases to get an idea of the risk of overfitting. Given the already small sample size and the small number of non-cases (n = 69, 30.3%), we likely have a high risk of overfitting. Given the scope of this practical, we will leave that be for now, but recommend that in real research settings, you evaluate this risk and carefully choose a path forward.</p>
 <p>Because age and weight loss are continuous, we should investigate whether adding them as a linear term is sufficient or if we should model them non-linearly. Instead of the predicted probability, we plot the log relative hazard as a function of the predictor, using a function from <code>{Hmisc}</code>, which combines functions from <code>{rms}</code> and <code>{survival}</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="co"># Model the outcome as a function of age</span></span>
-<span id="cb32-2"><a href="#cb32-2"></a>dat_plot <span class="ot">&lt;-</span> <span class="fu">do.call</span>(<span class="st">"cbind"</span>, <span class="fu">rcspline.plot</span>(<span class="at">x =</span> lung[[<span class="st">"age"</span>]], <span class="at">y =</span> lung[[<span class="st">"time"</span>]], <span class="at">noprint =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb32-3"><a href="#cb32-3"></a>                                           <span class="at">event =</span> lung[[<span class="st">"status"</span>]], <span class="at">model =</span> <span class="st">"cox"</span>, <span class="at">statloc =</span> <span class="st">"none"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb32-4"><a href="#cb32-4"></a>    <span class="co"># Change to data frame</span></span>
-<span id="cb32-5"><a href="#cb32-5"></a>    <span class="fu">as.data.frame</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="co"># Set seed for random process</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb32-3"><a href="#cb32-3"></a></span>
+<span id="cb32-4"><a href="#cb32-4"></a><span class="co"># Model the outcome as a function of age</span></span>
+<span id="cb32-5"><a href="#cb32-5"></a>dat_plot <span class="ot">&lt;-</span> <span class="fu">do.call</span>(<span class="st">"cbind"</span>, <span class="fu">rcspline.plot</span>(<span class="at">x =</span> lung[[<span class="st">"age"</span>]], <span class="at">y =</span> lung[[<span class="st">"time"</span>]], <span class="at">noprint =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb32-6"><a href="#cb32-6"></a>                                           <span class="at">event =</span> lung[[<span class="st">"status"</span>]], <span class="at">model =</span> <span class="st">"cox"</span>, <span class="at">statloc =</span> <span class="st">"none"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb32-7"><a href="#cb32-7"></a>    <span class="co"># Change to data frame</span></span>
+<span id="cb32-8"><a href="#cb32-8"></a>    <span class="fu">as.data.frame</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Although the function already gives us a plot, the author of this practical is of the opinion that it is quite an ugly plot, so we will plot it ourselves:</p>
 <div class="cell">
@@ -993,11 +996,14 @@ n=2159   Mean absolute error=0.006   Mean squared error=6e-05
 </div>
 <p>Now we repeat this for weight loss.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="co"># Model the outcome as a function of age</span></span>
-<span id="cb34-2"><a href="#cb34-2"></a>dat_plot <span class="ot">&lt;-</span> <span class="fu">do.call</span>(<span class="st">"cbind"</span>, <span class="fu">rcspline.plot</span>(<span class="at">x =</span> lung[[<span class="st">"wt.loss"</span>]], <span class="at">y =</span> lung[[<span class="st">"time"</span>]], <span class="at">noprint =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb34-3"><a href="#cb34-3"></a>                                           <span class="at">event =</span> lung[[<span class="st">"status"</span>]], <span class="at">model =</span> <span class="st">"cox"</span>, <span class="at">statloc =</span> <span class="st">"none"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb34-4"><a href="#cb34-4"></a>    <span class="co"># Change to data frame</span></span>
-<span id="cb34-5"><a href="#cb34-5"></a>    <span class="fu">as.data.frame</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="co"># Set seed for random process</span></span>
+<span id="cb34-2"><a href="#cb34-2"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb34-3"><a href="#cb34-3"></a></span>
+<span id="cb34-4"><a href="#cb34-4"></a><span class="co"># Model the outcome as a function of age</span></span>
+<span id="cb34-5"><a href="#cb34-5"></a>dat_plot <span class="ot">&lt;-</span> <span class="fu">do.call</span>(<span class="st">"cbind"</span>, <span class="fu">rcspline.plot</span>(<span class="at">x =</span> lung[[<span class="st">"wt.loss"</span>]], <span class="at">y =</span> lung[[<span class="st">"time"</span>]], <span class="at">noprint =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb34-6"><a href="#cb34-6"></a>                                           <span class="at">event =</span> lung[[<span class="st">"status"</span>]], <span class="at">model =</span> <span class="st">"cox"</span>, <span class="at">statloc =</span> <span class="st">"none"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb34-7"><a href="#cb34-7"></a>    <span class="co"># Change to data frame</span></span>
+<span id="cb34-8"><a href="#cb34-8"></a>    <span class="fu">as.data.frame</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="co"># Get plot</span></span>
@@ -1030,7 +1036,7 @@ n=2159   Mean absolute error=0.006   Mean squared error=6e-05
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-27" data-target-annotation="1" onclick="event.preventDefault();" href="">1</a><span id="annotated-cell-27-2" class="code-annotation-target"><a href="#annotated-cell-27-2"></a>fit <span class="ot">&lt;-</span> <span class="fu">coxph</span>(<span class="fu">Surv</span>(time, status) <span class="sc">~</span></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-27" data-target-annotation="2" onclick="event.preventDefault();" href="">2</a><span id="annotated-cell-27-3" class="code-annotation-target"><a href="#annotated-cell-27-3"></a>               age <span class="sc">+</span></span>
 <span id="annotated-cell-27-4"><a href="#annotated-cell-27-4"></a>               sex <span class="sc">+</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-27" data-target-annotation="3" onclick="event.preventDefault();" href="">3</a><span id="annotated-cell-27-5" class="code-annotation-target"><a href="#annotated-cell-27-5"></a>               <span class="fu">ns</span>(wt.loss, <span class="at">knots =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">17</span>)),</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-27" data-target-annotation="3" onclick="event.preventDefault();" href="">3</a><span id="annotated-cell-27-5" class="code-annotation-target"><a href="#annotated-cell-27-5"></a>               <span class="fu">ns</span>(wt.loss, <span class="at">knots =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">12</span>)),</span>
 <span id="annotated-cell-27-6"><a href="#annotated-cell-27-6"></a>           <span class="at">data =</span> lung)                       </span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
@@ -1044,7 +1050,7 @@ n=2159   Mean absolute error=0.006   Mean squared error=6e-05
 </dd>
 <dt data-target-cell="annotated-cell-27" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-27" data-code-lines="5" data-code-annotation="3">Add weight loss as a natural cubic spline using the <code>ns()</code> function from <code>{splines}</code>. We put knots at 0 and 17 based on the previous graph.</span>
+<span data-code-cell="annotated-cell-27" data-code-lines="5" data-code-annotation="3">Add weight loss as a natural cubic spline using the <code>ns()</code> function from <code>{splines}</code>. We put knots at 1 and 12 based on the previous graph.</span>
 </dd>
 </dl>
 </div>
@@ -1056,39 +1062,39 @@ n=2159   Mean absolute error=0.006   Mean squared error=6e-05
 <div class="cell-output cell-output-stdout">
 <pre><code>Call:
 coxph(formula = Surv(time, status) ~ age + sex + ns(wt.loss, 
-    knots = c(0, 17)), data = lung)
+    knots = c(1, 12)), data = lung)
 
   n= 228, number of events= 159 
 
                                     coef exp(coef)  se(coef)      z Pr(&gt;|z|)   
-age                             0.017078  1.017224  0.009475  1.802  0.07147 . 
-sex                            -0.540593  0.582403  0.171566 -3.151  0.00163 **
-ns(wt.loss, knots = c(0, 17))1 -0.154563  0.856790  0.489562 -0.316  0.75222   
-ns(wt.loss, knots = c(0, 17))2 -2.830153  0.059004  1.689302 -1.675  0.09387 . 
-ns(wt.loss, knots = c(0, 17))3 -1.213036  0.297293  0.982152 -1.235  0.21680   
+age                             0.016774  1.016915  0.009492  1.767  0.07720 . 
+sex                            -0.541506  0.581871  0.171529 -3.157  0.00159 **
+ns(wt.loss, knots = c(1, 12))1 -0.068224  0.934051  0.510624 -0.134  0.89371   
+ns(wt.loss, knots = c(1, 12))2 -2.705719  0.066822  1.744526 -1.551  0.12091   
+ns(wt.loss, knots = c(1, 12))3 -1.230259  0.292217  0.973117 -1.264  0.20614   
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
                                exp(coef) exp(-coef) lower .95 upper .95
-age                               1.0172     0.9831  0.998509    1.0363
-sex                               0.5824     1.7170  0.416089    0.8152
-ns(wt.loss, knots = c(0, 17))1    0.8568     1.1671  0.328215    2.2366
-ns(wt.loss, knots = c(0, 17))2    0.0590    16.9481  0.002153    1.6174
-ns(wt.loss, knots = c(0, 17))3    0.2973     3.3637  0.043369    2.0380
+age                              1.01692     0.9834  0.998172    1.0360
+sex                              0.58187     1.7186  0.415739    0.8144
+ns(wt.loss, knots = c(1, 12))1   0.93405     1.0706  0.343342    2.5411
+ns(wt.loss, knots = c(1, 12))2   0.06682    14.9651  0.002188    2.0411
+ns(wt.loss, knots = c(1, 12))3   0.29222     3.4221  0.043390    1.9680
 
 Concordance= 0.611  (se = 0.025 )
-Likelihood ratio test= 18.49  on 5 df,   p=0.002
-Wald test            = 17.6  on 5 df,   p=0.003
-Score (logrank) test = 18.11  on 5 df,   p=0.003</code></pre>
+Likelihood ratio test= 18.57  on 5 df,   p=0.002
+Wald test            = 17.59  on 5 df,   p=0.004
+Score (logrank) test = 18.08  on 5 df,   p=0.003</code></pre>
 </div>
 </div>
-<p>We see that weight loss has three coefficients, one for the lowest value through 0 (1), one for 0 through 10 (2), and one for 10 through the highest value (3). Also note that we do not have an intercept: to calculate the final predicted risk, we need to use the baseline hazard instead of the intercept. However, the baseline hazard is different for each timepoint.</p>
+<p>We see that weight loss has three coefficients, one for the lowest value through 1 (1), one for 1 through 12 (2), and one for 12 through the highest value (3). Also note that we do not have an intercept: to calculate the final predicted risk, we need to use the baseline hazard instead of the intercept. However, the baseline hazard is different for each timepoint.</p>
 <p>We can use <code>basehaz()</code> to calculate the baseline hazard at our timepoint of interest (2 years):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="co"># Retrieve baseline hazard at 2 years</span></span>
 <span id="cb38-2"><a href="#cb38-2"></a><span class="fu">filter</span>(<span class="fu">basehaz</span>(fit), time <span class="sc">==</span> <span class="fl">365.25</span> <span class="sc">*</span> <span class="dv">2</span>)[[<span class="st">"hazard"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.145641</code></pre>
+<pre><code>[1] 2.144551</code></pre>
 </div>
 </div>
 <p>Discrimination of this model can be calculated using Harrell’s C-statistic: * The function <code>cindex()</code> from the <code>{dynpred}</code> package (does not require model fit, but does require development formula). * The function <code>rcorr.cens()</code> from the <code>{Hmisc}</code> package (does not require model fit, but may be slow). * The function <code>cIndex()</code> from the <code>{intsurv}</code> package.</p>

@@ -489,6 +489,9 @@ Because age and weight loss are continuous, we should investigate whether adding
 
 ```{r}
 #| output: false
+# Set seed for random process
+set.seed(1)
+
 # Model the outcome as a function of age
 dat_plot <- do.call("cbind", rcspline.plot(x = lung[["age"]], y = lung[["time"]], noprint = TRUE,
                                            event = lung[["status"]], model = "cox", statloc = "none")) %>%
@@ -518,6 +521,9 @@ ggplot(dat_plot, aes(x = x, y = V3)) +
 Now we repeat this for weight loss.
 ```{r}
 #| output: false
+# Set seed for random process
+set.seed(1)
+
 # Model the outcome as a function of age
 dat_plot <- do.call("cbind", rcspline.plot(x = lung[["wt.loss"]], y = lung[["time"]], noprint = TRUE,
                                            event = lung[["status"]], model = "cox", statloc = "none")) %>%
@@ -552,14 +558,14 @@ To develop the prediction model, we will use the `coxph()` function from the `{s
 fit <- coxph(Surv(time, status) ~                                             # <1>
                age +                                             # <2>
                sex +
-               ns(wt.loss, knots = c(0, 17)),                                         # <3>
+               ns(wt.loss, knots = c(1, 12)),                                         # <3>
            data = lung)                       
 
 ```
 
 1. Fit a Cox regression model, with the outcome being a survival object containing the event and time to event.
 2. Add predictors age (linearly) and sex.
-3. Add weight loss as a natural cubic spline using the `ns()` function from `{splines}`. We put knots at 0 and 17 based on the previous graph.
+3. Add weight loss as a natural cubic spline using the `ns()` function from `{splines}`. We put knots at 1 and 12 based on the previous graph.
 
 Let's see what the output looks like:
 ```{r}
@@ -567,7 +573,7 @@ Let's see what the output looks like:
 summary(fit)
 
 ```
-We see that weight loss has three coefficients, one for the lowest value through 0 (1), one for 0 through 10 (2), and one for 10 through the highest value (3). Also note that we do not have an intercept: to calculate the final predicted risk, we need to use the baseline hazard instead of the intercept. However, the baseline hazard is different for each timepoint.
+We see that weight loss has three coefficients, one for the lowest value through 1 (1), one for 1 through 12 (2), and one for 12 through the highest value (3). Also note that we do not have an intercept: to calculate the final predicted risk, we need to use the baseline hazard instead of the intercept. However, the baseline hazard is different for each timepoint.
 
 We can use `basehaz()` to calculate the baseline hazard at our timepoint of interest (2 years):
 ```{r}
