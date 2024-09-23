@@ -849,17 +849,17 @@ Slope: 1.000</code></pre>
 <span id="cb20-2"><a href="#cb20-2"></a><span class="fu">validate</span>(fit_rms)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          index.orig training    test optimism index.corrected  n
-Dxy           0.5303   0.5356  0.5253   0.0102          0.5200 40
-R2            0.2726   0.2792  0.2673   0.0119          0.2606 40
-Intercept     0.0000   0.0000 -0.0299   0.0299         -0.0299 40
-Slope         1.0000   1.0000  0.9695   0.0305          0.9695 40
-Emax          0.0000   0.0000  0.0121   0.0121          0.0121 40
-D             0.2243   0.2309  0.2194   0.0114          0.2129 40
-U            -0.0009  -0.0009  0.0003  -0.0013          0.0003 40
-Q             0.2252   0.2318  0.2191   0.0127          0.2125 40
-B             0.1879   0.1872  0.1890  -0.0019          0.1897 40
-g             1.2470   1.2734  1.2321   0.0413          1.2057 40
-gp            0.2538   0.2573  0.2512   0.0061          0.2477 40</code></pre>
+Dxy           0.5303   0.5404  0.5251   0.0154          0.5149 40
+R2            0.2726   0.2820  0.2670   0.0150          0.2576 40
+Intercept     0.0000   0.0000 -0.0023   0.0023         -0.0023 40
+Slope         1.0000   1.0000  0.9592   0.0408          0.9592 40
+Emax          0.0000   0.0000  0.0097   0.0097          0.0097 40
+D             0.2243   0.2329  0.2191   0.0138          0.2105 40
+U            -0.0009  -0.0009  0.0005  -0.0014          0.0005 40
+Q             0.2252   0.2339  0.2187   0.0152          0.2100 40
+B             0.1879   0.1855  0.1891  -0.0036          0.1914 40
+g             1.2470   1.2839  1.2323   0.0516          1.1954 40
+gp            0.2538   0.2578  0.2512   0.0066          0.2472 40</code></pre>
 </div>
 </div>
 <p>How do we interpret this output? The <code>validate()</code> function applies resampling, which is a method to account for overfitting, with the results being printed in the ‘index.corrected’ column. However, if we are just interested in the apparent performance, we can just look at ‘index.orig’. To calculate the C-statistic, we can use <span class="math inline">\(c = \frac{Dxy}{2} + 0.5\)</span>. In our case, the C-statistic would be:</p>
@@ -883,8 +883,8 @@ gp            0.2538   0.2573  0.2512   0.0061          0.2477 40</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-n=2159   Mean absolute error=0.005   Mean squared error=5e-05
-0.9 Quantile of absolute error=0.012</code></pre>
+n=2159   Mean absolute error=0.005   Mean squared error=3e-05
+0.9 Quantile of absolute error=0.009</code></pre>
 </div>
 </div>
 </section>
@@ -1036,7 +1036,7 @@ n=2159   Mean absolute error=0.005   Mean squared error=5e-05
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-27" data-target-annotation="1" onclick="event.preventDefault();" href="">1</a><span id="annotated-cell-27-2" class="code-annotation-target"><a href="#annotated-cell-27-2"></a>fit <span class="ot">&lt;-</span> <span class="fu">coxph</span>(<span class="fu">Surv</span>(time, status) <span class="sc">~</span></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-27" data-target-annotation="2" onclick="event.preventDefault();" href="">2</a><span id="annotated-cell-27-3" class="code-annotation-target"><a href="#annotated-cell-27-3"></a>               age <span class="sc">+</span></span>
 <span id="annotated-cell-27-4"><a href="#annotated-cell-27-4"></a>               sex <span class="sc">+</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-27" data-target-annotation="3" onclick="event.preventDefault();" href="">3</a><span id="annotated-cell-27-5" class="code-annotation-target"><a href="#annotated-cell-27-5"></a>               <span class="fu">ns</span>(wt.loss, <span class="at">knots =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">17</span>)),</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-27" data-target-annotation="3" onclick="event.preventDefault();" href="">3</a><span id="annotated-cell-27-5" class="code-annotation-target"><a href="#annotated-cell-27-5"></a>               <span class="fu">ns</span>(wt.loss, <span class="at">knots =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">12</span>)),</span>
 <span id="annotated-cell-27-6"><a href="#annotated-cell-27-6"></a>           <span class="at">data =</span> lung)                       </span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
@@ -1050,7 +1050,7 @@ n=2159   Mean absolute error=0.005   Mean squared error=5e-05
 </dd>
 <dt data-target-cell="annotated-cell-27" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-27" data-code-lines="5" data-code-annotation="3">Add weight loss as a natural cubic spline using the <code>ns()</code> function from <code>{splines}</code>. We put knots at 0 and 17 based on the previous graph.</span>
+<span data-code-cell="annotated-cell-27" data-code-lines="5" data-code-annotation="3">Add weight loss as a natural cubic spline using the <code>ns()</code> function from <code>{splines}</code>. We put knots at 1 and 12 based on the previous graph.</span>
 </dd>
 </dl>
 </div>
@@ -1062,39 +1062,39 @@ n=2159   Mean absolute error=0.005   Mean squared error=5e-05
 <div class="cell-output cell-output-stdout">
 <pre><code>Call:
 coxph(formula = Surv(time, status) ~ age + sex + ns(wt.loss, 
-    knots = c(0, 17)), data = lung)
+    knots = c(1, 12)), data = lung)
 
   n= 228, number of events= 159 
 
-                                   coef exp(coef) se(coef)      z Pr(&gt;|z|)   
-age                             0.01697   1.01712  0.00948  1.790  0.07338 . 
-sex                            -0.53810   0.58386  0.17178 -3.132  0.00173 **
-ns(wt.loss, knots = c(0, 17))1 -0.09615   0.90833  0.49101 -0.196  0.84475   
-ns(wt.loss, knots = c(0, 17))2 -2.76263   0.06313  1.70809 -1.617  0.10580   
-ns(wt.loss, knots = c(0, 17))3 -1.17397   0.30914  0.97006 -1.210  0.22620   
+                                    coef exp(coef)  se(coef)      z Pr(&gt;|z|)   
+age                             0.016774  1.016915  0.009492  1.767  0.07720 . 
+sex                            -0.541506  0.581871  0.171529 -3.157  0.00159 **
+ns(wt.loss, knots = c(1, 12))1 -0.068224  0.934051  0.510624 -0.134  0.89371   
+ns(wt.loss, knots = c(1, 12))2 -2.705719  0.066822  1.744526 -1.551  0.12091   
+ns(wt.loss, knots = c(1, 12))3 -1.230259  0.292217  0.973117 -1.264  0.20614   
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
                                exp(coef) exp(-coef) lower .95 upper .95
-age                              1.01712     0.9832   0.99839    1.0362
-sex                              0.58386     1.7127   0.41695    0.8176
-ns(wt.loss, knots = c(0, 17))1   0.90833     1.1009   0.34697    2.3779
-ns(wt.loss, knots = c(0, 17))2   0.06313    15.8415   0.00222    1.7953
-ns(wt.loss, knots = c(0, 17))3   0.30914     3.2348   0.04618    2.0695
+age                              1.01692     0.9834  0.998172    1.0360
+sex                              0.58187     1.7186  0.415739    0.8144
+ns(wt.loss, knots = c(1, 12))1   0.93405     1.0706  0.343342    2.5411
+ns(wt.loss, knots = c(1, 12))2   0.06682    14.9651  0.002188    2.0411
+ns(wt.loss, knots = c(1, 12))3   0.29222     3.4221  0.043390    1.9680
 
-Concordance= 0.609  (se = 0.025 )
-Likelihood ratio test= 18.51  on 5 df,   p=0.002
-Wald test            = 17.61  on 5 df,   p=0.003
-Score (logrank) test = 18.1  on 5 df,   p=0.003</code></pre>
+Concordance= 0.611  (se = 0.025 )
+Likelihood ratio test= 18.57  on 5 df,   p=0.002
+Wald test            = 17.59  on 5 df,   p=0.004
+Score (logrank) test = 18.08  on 5 df,   p=0.003</code></pre>
 </div>
 </div>
-<p>We see that weight loss has three coefficients, one for the lowest value through 0 (1), one for 0 through 10 (2), and one for 10 through the highest value (3). Also note that we do not have an intercept: to calculate the final predicted risk, we need to use the baseline hazard instead of the intercept. However, the baseline hazard is different for each timepoint.</p>
+<p>We see that weight loss has three coefficients, one for the lowest value through 1 (1), one for 1 through 12 (2), and one for 12 through the highest value (3). Also note that we do not have an intercept: to calculate the final predicted risk, we need to use the baseline hazard instead of the intercept. However, the baseline hazard is different for each timepoint.</p>
 <p>We can use <code>basehaz()</code> to calculate the baseline hazard at our timepoint of interest (2 years):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="co"># Retrieve baseline hazard at 2 years</span></span>
 <span id="cb38-2"><a href="#cb38-2"></a><span class="fu">filter</span>(<span class="fu">basehaz</span>(fit), time <span class="sc">==</span> <span class="fl">365.25</span> <span class="sc">*</span> <span class="dv">2</span>)[[<span class="st">"hazard"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.147396</code></pre>
+<pre><code>[1] 2.144551</code></pre>
 </div>
 </div>
 <p>Discrimination of this model can be calculated using Harrell’s C-statistic: * The function <code>cindex()</code> from the <code>{dynpred}</code> package (does not require model fit, but does require development formula). * The function <code>rcorr.cens()</code> from the <code>{Hmisc}</code> package (does not require model fit, but may be slow). * The function <code>cIndex()</code> from the <code>{intsurv}</code> package.</p>
