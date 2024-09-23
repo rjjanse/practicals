@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Roemer J. Janse">
-<meta name="dcterms.date" content="2024-09-19">
+<meta name="dcterms.date" content="2024-09-23">
 
 <title>PINT - Prediction Practical 1</title>
 <style>
@@ -166,7 +166,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 19, 2024</p>
+      <p class="date">September 23, 2024</p>
     </div>
   </div>
   
@@ -849,17 +849,17 @@ Slope: 1.000</code></pre>
 <span id="cb20-2"><a href="#cb20-2"></a><span class="fu">validate</span>(fit_rms)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          index.orig training    test optimism index.corrected  n
-Dxy           0.5303   0.5372  0.5246   0.0126          0.5177 40
-R2            0.2726   0.2816  0.2664   0.0152          0.2574 40
-Intercept     0.0000   0.0000 -0.0285   0.0285         -0.0285 40
-Slope         1.0000   1.0000  0.9638   0.0362          0.9638 40
-Emax          0.0000   0.0000  0.0130   0.0130          0.0130 40
-D             0.2243   0.2330  0.2186   0.0144          0.2099 40
-U            -0.0009  -0.0009  0.0004  -0.0013          0.0004 40
-Q             0.2252   0.2339  0.2182   0.0157          0.2095 40
-B             0.1879   0.1863  0.1892  -0.0028          0.1907 40
-g             1.2470   1.2782  1.2273   0.0509          1.1961 40
-gp            0.2538   0.2579  0.2505   0.0074          0.2464 40</code></pre>
+Dxy           0.5303   0.5310  0.5253   0.0057          0.5246 40
+R2            0.2726   0.2733  0.2670   0.0063          0.2663 40
+Intercept     0.0000   0.0000 -0.0031   0.0031         -0.0031 40
+Slope         1.0000   1.0000  0.9809   0.0191          0.9809 40
+Emax          0.0000   0.0000  0.0048   0.0048          0.0048 40
+D             0.2243   0.2249  0.2191   0.0058          0.2185 40
+U            -0.0009  -0.0009  0.0002  -0.0011          0.0002 40
+Q             0.2252   0.2259  0.2189   0.0069          0.2183 40
+B             0.1879   0.1875  0.1891  -0.0016          0.1894 40
+g             1.2470   1.2526  1.2304   0.0222          1.2248 40
+gp            0.2538   0.2537  0.2510   0.0027          0.2511 40</code></pre>
 </div>
 </div>
 <p>How do we interpret this output? The <code>validate()</code> function applies resampling, which is a method to account for overfitting, with the results being printed in the ‘index.corrected’ column. However, if we are just interested in the apparent performance, we can just look at ‘index.orig’. To calculate the C-statistic, we can use <span class="math inline">\(c = \frac{Dxy}{2} + 0.5\)</span>. In our case, the C-statistic would be:</p>
@@ -883,8 +883,8 @@ gp            0.2538   0.2579  0.2505   0.0074          0.2464 40</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-n=2159   Mean absolute error=0.005   Mean squared error=4e-05
-0.9 Quantile of absolute error=0.01</code></pre>
+n=2159   Mean absolute error=0.005   Mean squared error=5e-05
+0.9 Quantile of absolute error=0.012</code></pre>
 </div>
 </div>
 </section>
@@ -1061,25 +1061,25 @@ coxph(formula = Surv(time, status) ~ age + sex + ns(wt.loss,
   n= 228, number of events= 159 
 
                                     coef exp(coef)  se(coef)      z Pr(&gt;|z|)   
-age                             0.018156  1.018322  0.009481  1.915  0.05550 . 
-sex                            -0.539743  0.582898  0.171504 -3.147  0.00165 **
-ns(wt.loss, knots = c(0, 17))1 -0.353044  0.702546  0.476751 -0.741  0.45898   
-ns(wt.loss, knots = c(0, 17))2 -2.614513  0.073203  1.605112 -1.629  0.10334   
-ns(wt.loss, knots = c(0, 17))3 -0.652999  0.520482  0.837803 -0.779  0.43573   
+age                             0.017809  1.017969  0.009462  1.882  0.05982 . 
+sex                            -0.540116  0.582680  0.171409 -3.151  0.00163 **
+ns(wt.loss, knots = c(0, 17))1 -0.382050  0.682461  0.470259 -0.812  0.41655   
+ns(wt.loss, knots = c(0, 17))2 -3.139707  0.043295  1.560816 -2.012  0.04426 * 
+ns(wt.loss, knots = c(0, 17))3 -1.115881  0.327627  0.922212 -1.210  0.22628   
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
                                exp(coef) exp(-coef) lower .95 upper .95
-age                               1.0183      0.982   0.99957    1.0374
-sex                               0.5829      1.716   0.41649    0.8158
-ns(wt.loss, knots = c(0, 17))1    0.7025      1.423   0.27597    1.7885
-ns(wt.loss, knots = c(0, 17))2    0.0732     13.661   0.00315    1.7014
-ns(wt.loss, knots = c(0, 17))3    0.5205      1.921   0.10076    2.6887
+age                               1.0180     0.9823  0.999264    1.0370
+sex                               0.5827     1.7162  0.416416    0.8153
+ns(wt.loss, knots = c(0, 17))1    0.6825     1.4653  0.271515    1.7154
+ns(wt.loss, knots = c(0, 17))2    0.0433    23.0971  0.002032    0.9226
+ns(wt.loss, knots = c(0, 17))3    0.3276     3.0523  0.053752    1.9970
 
-Concordance= 0.606  (se = 0.025 )
-Likelihood ratio test= 18.28  on 5 df,   p=0.003
-Wald test            = 17.59  on 5 df,   p=0.004
-Score (logrank) test = 18.06  on 5 df,   p=0.003</code></pre>
+Concordance= 0.609  (se = 0.025 )
+Likelihood ratio test= 19.14  on 5 df,   p=0.002
+Wald test            = 18.59  on 5 df,   p=0.002
+Score (logrank) test = 19.15  on 5 df,   p=0.002</code></pre>
 </div>
 </div>
 <p>We see that weight loss has three coefficients, one for the lowest value through 0 (1), one for 0 through 10 (2), and one for 10 through the highest value (3). Also note that we do not have an intercept: to calculate the final predicted risk, we need to use the baseline hazard instead of the intercept. However, the baseline hazard is different for each timepoint.</p>
@@ -1088,7 +1088,7 @@ Score (logrank) test = 18.06  on 5 df,   p=0.003</code></pre>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="co"># Retrieve baseline hazard at 2 years</span></span>
 <span id="cb38-2"><a href="#cb38-2"></a><span class="fu">filter</span>(<span class="fu">basehaz</span>(fit), time <span class="sc">==</span> <span class="fl">365.25</span> <span class="sc">*</span> <span class="dv">2</span>)[[<span class="st">"hazard"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.148346</code></pre>
+<pre><code>[1] 2.152039</code></pre>
 </div>
 </div>
 <p>Discrimination of this model can be calculated using Harrell’s C-statistic: * The function <code>cindex()</code> from the <code>{dynpred}</code> package (does not require model fit, but does require development formula). * The function <code>rcorr.cens()</code> from the <code>{Hmisc}</code> package (does not require model fit, but may be slow). * The function <code>cIndex()</code> from the <code>{intsurv}</code> package.</p>
