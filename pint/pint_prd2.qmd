@@ -661,7 +661,7 @@ tibble(model = c("standard", "BU"),
 We see that the C-statistics remained the same, likely because the shift in final predictions was small. However, the calibration of the standard model was better than the bootstrapped model in the development data, but worse in the validation data, as expected.
 
 # Final words
-We now discussed different shrinkage methods and have seen how to implement these. 
+We now discussed different shrinkage methods and have seen how to implement these. There are other methods available for shrinkage and these methods can also be applied to regression models other than logistic regression, but you are now familiar with the implementation of some of the most popular approaches.
 
 # Postscript
 
