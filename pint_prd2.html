@@ -743,7 +743,7 @@ causeRoad traffic accident  0.266325399  0.26484164</code></pre>
 </dl>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.008811767</code></pre>
+<pre><code>[1] 0.001036979</code></pre>
 </div>
 </div>
 <p>Using our newly estimated <span class="math inline">\(\lambda\)</span>, we can fit a LASSO regression:</p>
@@ -760,15 +760,15 @@ causeRoad traffic accident  0.266325399  0.26484164</code></pre>
 <span id="cb19-10"><a href="#cb19-10"></a>           <span class="at">lasso =</span> <span class="fu">coef</span>(fit_lasso)[<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                               standard        lasso
-(Intercept)                -1.382712131 -1.245073145
-age                         0.037291271  0.033261967
-d.sysbpt                   -0.008378515 -0.006202844
-pupil.ino reactive pupils   1.836702419  1.698588282
-pupil.ione reactive         0.834370082  0.687648609
-causedomestic/fall          0.296242006  0.000000000
-causeMotorbike             -0.019630030 -0.146980585
-causeother                  0.483428921  0.152216095
-causeRoad traffic accident  0.266325399  0.000000000</code></pre>
+(Intercept)                -1.382712131 -1.336717409
+age                         0.037291271  0.036740032
+d.sysbpt                   -0.008378515 -0.008154423
+pupil.ino reactive pupils   1.836702419  1.820386273
+pupil.ione reactive         0.834370082  0.817360258
+causedomestic/fall          0.296242006  0.235966872
+causeMotorbike             -0.019630030 -0.057387221
+causeother                  0.483428921  0.421159619
+causeRoad traffic accident  0.266325399  0.208398364</code></pre>
 </div>
 </div>
 <p>From this output, we can see that two levels of cause were set to 0, effectively removing those variables from the final prediction model.</p>
@@ -796,15 +796,15 @@ causeRoad traffic accident  0.266325399  0.000000000</code></pre>
 <span id="cb21-10"><a href="#cb21-10"></a>           <span class="st">`</span><span class="at">elastic net</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">coef</span>(fit_elnet)[<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                               standard  elastic.net
-(Intercept)                -1.382712131 -1.166262635
-age                         0.037291271  0.034033114
-d.sysbpt                   -0.008378515 -0.007323096
-pupil.ino reactive pupils   1.836702419  1.725088065
-pupil.ione reactive         0.834370082  0.738591204
-causedomestic/fall          0.296242006  0.055738038
-causeMotorbike             -0.019630030 -0.169522827
-causeother                  0.483428921  0.224909450
-causeRoad traffic accident  0.266325399  0.027031510</code></pre>
+(Intercept)                -1.382712131 -1.350056045
+age                         0.037291271  0.036877098
+d.sysbpt                   -0.008378515 -0.008255353
+pupil.ino reactive pupils   1.836702419  1.822878559
+pupil.ione reactive         0.834370082  0.822703761
+causedomestic/fall          0.296242006  0.261479891
+causeMotorbike             -0.019630030 -0.043441429
+causeother                  0.483428921  0.446474961
+causeRoad traffic accident  0.266325399  0.231953426</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -977,13 +977,13 @@ Note
 </tr>
 <tr class="odd">
 <td style="text-align: left;">lasso</td>
-<td style="text-align: right;">0.7365521</td>
-<td style="text-align: right;">0.7021469</td>
+<td style="text-align: right;">0.7383039</td>
+<td style="text-align: right;">0.7014811</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">elastic net</td>
-<td style="text-align: right;">0.7369440</td>
-<td style="text-align: right;">0.7023059</td>
+<td style="text-align: right;">0.7384998</td>
+<td style="text-align: right;">0.7014115</td>
 </tr>
 </tbody>
 </table>
@@ -1043,17 +1043,17 @@ Note
 </tr>
 <tr class="odd">
 <td style="text-align: left;">lasso</td>
-<td style="text-align: right;">0.054</td>
-<td style="text-align: right;">0.235</td>
-<td style="text-align: right;">1.113</td>
-<td style="text-align: right;">1.004</td>
+<td style="text-align: right;">0.007</td>
+<td style="text-align: right;">0.165</td>
+<td style="text-align: right;">1.015</td>
+<td style="text-align: right;">0.891</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">elastic net</td>
-<td style="text-align: right;">0.041</td>
-<td style="text-align: right;">0.212</td>
-<td style="text-align: right;">1.085</td>
-<td style="text-align: right;">0.967</td>
+<td style="text-align: right;">0.005</td>
+<td style="text-align: right;">0.161</td>
+<td style="text-align: right;">1.011</td>
+<td style="text-align: right;">0.886</td>
 </tr>
 </tbody>
 </table>
