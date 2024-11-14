@@ -144,7 +144,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pint_prd2.html">PINT practical 2</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pint_prd1.html">PINT</a></li><li class="breadcrumb-item"><a href="./pint_prd2.html">Practical 2</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -164,18 +164,29 @@ window.Quarto = {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">PINT</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pint_prd1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">PINT practical 1</span></a>
+ <span class="menu-text">Practical 1</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pint_prd2.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">PINT practical 2</span></a>
+ <span class="menu-text">Practical 2</span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -220,7 +231,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pint_prd1.html">PINT</a></li><li class="breadcrumb-item"><a href="./pint_prd2.html">Practical 2</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">PINT - Prediction Practical 2</h1>
 <p class="subtitle lead">Shrinkage Methods for Prediction Models</p>
@@ -743,7 +754,7 @@ causeRoad traffic accident  0.266325399  0.26484164</code></pre>
 </dl>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.001036979</code></pre>
+<pre><code>[1] 0.008028954</code></pre>
 </div>
 </div>
 <p>Using our newly estimated <span class="math inline">\(\lambda\)</span>, we can fit a LASSO regression:</p>
@@ -760,15 +771,15 @@ causeRoad traffic accident  0.266325399  0.26484164</code></pre>
 <span id="cb19-10"><a href="#cb19-10"></a>           <span class="at">lasso =</span> <span class="fu">coef</span>(fit_lasso)[<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                               standard        lasso
-(Intercept)                -1.382712131 -1.336717409
-age                         0.037291271  0.036740032
-d.sysbpt                   -0.008378515 -0.008154423
-pupil.ino reactive pupils   1.836702419  1.820386273
-pupil.ione reactive         0.834370082  0.817360258
-causedomestic/fall          0.296242006  0.235966872
-causeMotorbike             -0.019630030 -0.057387221
-causeother                  0.483428921  0.421159619
-causeRoad traffic accident  0.266325399  0.208398364</code></pre>
+(Intercept)                -1.382712131 -1.230742024
+age                         0.037291271  0.033588830
+d.sysbpt                   -0.008378515 -0.006431202
+pupil.ino reactive pupils   1.836702419  1.711308392
+pupil.ione reactive         0.834370082  0.700955917
+causedomestic/fall          0.296242006  0.000000000
+causeMotorbike             -0.019630030 -0.156220959
+causeother                  0.483428921  0.160546366
+causeRoad traffic accident  0.266325399  0.000000000</code></pre>
 </div>
 </div>
 <p>From this output, we can see that two levels of cause were set to 0, effectively removing those variables from the final prediction model.</p>
@@ -796,15 +807,15 @@ causeRoad traffic accident  0.266325399  0.208398364</code></pre>
 <span id="cb21-10"><a href="#cb21-10"></a>           <span class="st">`</span><span class="at">elastic net</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">coef</span>(fit_elnet)[<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                               standard  elastic.net
-(Intercept)                -1.382712131 -1.350056045
-age                         0.037291271  0.036877098
-d.sysbpt                   -0.008378515 -0.008255353
-pupil.ino reactive pupils   1.836702419  1.822878559
-pupil.ione reactive         0.834370082  0.822703761
-causedomestic/fall          0.296242006  0.261479891
-causeMotorbike             -0.019630030 -0.043441429
-causeother                  0.483428921  0.446474961
-causeRoad traffic accident  0.266325399  0.231953426</code></pre>
+(Intercept)                -1.382712131 -1.181518125
+age                         0.037291271  0.034301194
+d.sysbpt                   -0.008378515 -0.007416112
+pupil.ino reactive pupils   1.836702419  1.734493173
+pupil.ione reactive         0.834370082  0.746802928
+causedomestic/fall          0.296242006  0.073615051
+causeMotorbike             -0.019630030 -0.159495702
+causeother                  0.483428921  0.244266906
+causeRoad traffic accident  0.266325399  0.044820028</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -977,13 +988,13 @@ Note
 </tr>
 <tr class="odd">
 <td style="text-align: left;">lasso</td>
-<td style="text-align: right;">0.7383039</td>
-<td style="text-align: right;">0.7014811</td>
+<td style="text-align: right;">0.7365717</td>
+<td style="text-align: right;">0.7023589</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">elastic net</td>
-<td style="text-align: right;">0.7384998</td>
-<td style="text-align: right;">0.7014115</td>
+<td style="text-align: right;">0.7370890</td>
+<td style="text-align: right;">0.7021569</td>
 </tr>
 </tbody>
 </table>
@@ -1043,17 +1054,17 @@ Note
 </tr>
 <tr class="odd">
 <td style="text-align: left;">lasso</td>
-<td style="text-align: right;">0.007</td>
-<td style="text-align: right;">0.165</td>
-<td style="text-align: right;">1.015</td>
-<td style="text-align: right;">0.891</td>
+<td style="text-align: right;">0.049</td>
+<td style="text-align: right;">0.229</td>
+<td style="text-align: right;">1.103</td>
+<td style="text-align: right;">0.993</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">elastic net</td>
-<td style="text-align: right;">0.005</td>
-<td style="text-align: right;">0.161</td>
-<td style="text-align: right;">1.011</td>
-<td style="text-align: right;">0.886</td>
+<td style="text-align: right;">0.037</td>
+<td style="text-align: right;">0.207</td>
+<td style="text-align: right;">1.078</td>
+<td style="text-align: right;">0.959</td>
 </tr>
 </tbody>
 </table>
