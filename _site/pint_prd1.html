@@ -144,7 +144,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pint_prd1.html">PINT practical 1</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pint_prd1.html">PINT</a></li><li class="breadcrumb-item"><a href="./pint_prd1.html">Practical 1</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -164,18 +164,29 @@ window.Quarto = {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">PINT</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pint_prd1.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">PINT practical 1</span></a>
+ <span class="menu-text">Practical 1</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pint_prd2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">PINT practical 2</span></a>
+ <span class="menu-text">Practical 2</span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -221,7 +232,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pint_prd1.html">PINT</a></li><li class="breadcrumb-item"><a href="./pint_prd1.html">Practical 1</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">PINT - Prediction Practical 1</h1>
 <p class="subtitle lead">Analysis and Reporting of Prediction Modelling Studies</p>
@@ -923,18 +934,18 @@ Slope: 1.000</code></pre>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># Validate the model</span></span>
 <span id="cb20-2"><a href="#cb20-2"></a><span class="fu">validate</span>(fit_rms)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>          index.orig training   test optimism index.corrected  n
-Dxy           0.5303   0.5320 0.5251   0.0069          0.5233 40
-R2            0.2726   0.2754 0.2670   0.0083          0.2642 40
-Intercept     0.0000   0.0000 0.0013  -0.0013          0.0013 40
-Slope         1.0000   1.0000 0.9789   0.0211          0.9789 40
-Emax          0.0000   0.0000 0.0050   0.0050          0.0050 40
-D             0.2243   0.2269 0.2192   0.0077          0.2166 40
-U            -0.0009  -0.0009 0.0003  -0.0012          0.0003 40
-Q             0.2252   0.2278 0.2189   0.0089          0.2163 40
-B             0.1879   0.1866 0.1891  -0.0024          0.1903 40
-g             1.2470   1.2552 1.2267   0.0285          1.2185 40
-gp            0.2538   0.2539 0.2507   0.0032          0.2506 40</code></pre>
+<pre><code>          index.orig training    test optimism index.corrected  n
+Dxy           0.5303   0.5350  0.5255   0.0094          0.5208 40
+R2            0.2726   0.2773  0.2675   0.0098          0.2628 40
+Intercept     0.0000   0.0000 -0.0075   0.0075         -0.0075 40
+Slope         1.0000   1.0000  0.9777   0.0223          0.9777 40
+Emax          0.0000   0.0000  0.0062   0.0062          0.0062 40
+D             0.2243   0.2288  0.2196   0.0092          0.2151 40
+U            -0.0009  -0.0009  0.0000  -0.0009          0.0000 40
+Q             0.2252   0.2297  0.2196   0.0101          0.2151 40
+B             0.1879   0.1869  0.1890  -0.0020          0.1899 40
+g             1.2470   1.2664  1.2328   0.0336          1.2134 40
+gp            0.2538   0.2558  0.2512   0.0046          0.2492 40</code></pre>
 </div>
 </div>
 <p>How do we interpret this output? The <code>validate()</code> function applies resampling, which is a method to account for overfitting, with the results being printed in the ‘index.corrected’ column. However, if we are just interested in the apparent performance, we can just look at ‘index.orig’. To calculate the C-statistic, we can use <span class="math inline">\(c = \frac{Dxy}{2} + 0.5\)</span>. In our case, the C-statistic would be:</p>
@@ -1141,26 +1152,32 @@ coxph(formula = Surv(time, status) ~ age + sex + ns(wt.loss,
 
   n= 228, number of events= 159 
 
-                                    coef exp(coef)  se(coef)      z Pr(&gt;|z|)   
-age                             0.017152  1.017300  0.009474  1.811  0.07022 . 
-sex                            -0.539257  0.583182  0.171639 -3.142  0.00168 **
-ns(wt.loss, knots = c(1, 12))1 -0.217009  0.804922  0.499500 -0.434  0.66396   
-ns(wt.loss, knots = c(1, 12))2 -2.970555  0.051275  1.676074 -1.772  0.07634 . 
-ns(wt.loss, knots = c(1, 12))3 -1.248597  0.286907  0.947628 -1.318  0.18764   
+                                     coef  exp(coef)   se(coef)      z Pr(&gt;|z|)
+age                             0.0167093  1.0168497  0.0094676  1.765  0.07758
+sex                            -0.5503945  0.5767222  0.1720588 -3.199  0.00138
+ns(wt.loss, knots = c(1, 12))1  0.0008066  1.0008069  0.4795702  0.002  0.99866
+ns(wt.loss, knots = c(1, 12))2 -1.2220258  0.2946327  1.4479702 -0.844  0.39869
+ns(wt.loss, knots = c(1, 12))3 -0.6886587  0.5022493  0.8805938 -0.782  0.43419
+                                 
+age                            . 
+sex                            **
+ns(wt.loss, knots = c(1, 12))1   
+ns(wt.loss, knots = c(1, 12))2   
+ns(wt.loss, knots = c(1, 12))3   
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
                                exp(coef) exp(-coef) lower .95 upper .95
-age                              1.01730      0.983   0.99859    1.0364
-sex                              0.58318      1.715   0.41659    0.8164
-ns(wt.loss, knots = c(1, 12))1   0.80492      1.242   0.30240    2.1425
-ns(wt.loss, knots = c(1, 12))2   0.05127     19.503   0.00192    1.3696
-ns(wt.loss, knots = c(1, 12))3   0.28691      3.485   0.04478    1.8381
+age                               1.0168     0.9834   0.99815     1.036
+sex                               0.5767     1.7339   0.41163     0.808
+ns(wt.loss, knots = c(1, 12))1    1.0008     0.9992   0.39097     2.562
+ns(wt.loss, knots = c(1, 12))2    0.2946     3.3941   0.01725     5.033
+ns(wt.loss, knots = c(1, 12))3    0.5022     1.9910   0.08940     2.822
 
-Concordance= 0.61  (se = 0.025 )
-Likelihood ratio test= 18.76  on 5 df,   p=0.002
-Wald test            = 17.91  on 5 df,   p=0.003
-Score (logrank) test = 18.42  on 5 df,   p=0.002</code></pre>
+Concordance= 0.608  (se = 0.025 )
+Likelihood ratio test= 16.53  on 5 df,   p=0.005
+Wald test            = 15.67  on 5 df,   p=0.008
+Score (logrank) test = 16.05  on 5 df,   p=0.007</code></pre>
 </div>
 </div>
 <p>We see that weight loss has three coefficients, one for the lowest value through 1 (1), one for 1 through 12 (2), and one for 12 through the highest value (3). Also note that we do not have an intercept: to calculate the final predicted risk, we need to use the baseline hazard instead of the intercept. However, the baseline hazard is different for each timepoint.</p>
@@ -1169,7 +1186,7 @@ Score (logrank) test = 18.42  on 5 df,   p=0.002</code></pre>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="co"># Retrieve baseline hazard at 2 years</span></span>
 <span id="cb38-2"><a href="#cb38-2"></a><span class="fu">filter</span>(<span class="fu">basehaz</span>(fit), time <span class="sc">==</span> <span class="fl">365.25</span> <span class="sc">*</span> <span class="dv">2</span>)[[<span class="st">"hazard"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.146102</code></pre>
+<pre><code>[1] 2.144991</code></pre>
 </div>
 </div>
 <p>Discrimination of this model can be calculated using Harrell’s C-statistic: * The function <code>cindex()</code> from the <code>{dynpred}</code> package (does not require model fit, but does require development formula). * The function <code>rcorr.cens()</code> from the <code>{Hmisc}</code> package (does not require model fit, but may be slow). * The function <code>cIndex()</code> from the <code>{intsurv}</code> package.</p>

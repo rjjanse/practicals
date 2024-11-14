@@ -6,10 +6,12 @@ website:
       style: "floating"
       search: true
       contents:
-      - href: pint_prd1.qmd
-        text: PINT practical 1
-      - href: pint_prd2.qmd
-        text: PINT practical 2
+        - section: "PINT"
+          contents:
+          - href: pint_prd1.qmd
+            text: Practical 1
+          - href: pint_prd2.qmd
+            text: Practical 2
 
 format:
   html:
