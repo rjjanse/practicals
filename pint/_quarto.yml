@@ -1,0 +1,23 @@
+project:
+  type: website
+
+website:
+    sidebar:
+      style: "floating"
+      search: true
+      contents:
+      - href: pint_prd1.qmd
+        text: PINT practical 1
+      - href: pint_prd2.qmd
+        text: PINT practical 2
+
+format:
+  html:
+    other-links:
+      - text: EPI-B
+        href: https://www.lumc.nl/en/afdelingen/Clinical-Epidemiology/epidemioloog-b/
+        target: _blank
+    theme: lux
+    toc: true
+    number-sections: true
+    code-line-numbers: true

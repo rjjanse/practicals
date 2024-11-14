@@ -5,6 +5,17 @@ author: "Roemer J. Janse"
 date: today
 format:
     html:
+        other-links:
+        - text: EPI-B
+          href: https://www.lumc.nl/en/afdelingen/Clinical-Epidemiology/epidemioloog-b/
+          target: _blank
+        code-links:
+        - text: Source code
+          icon: file-code
+          href: https://github.com/rjjanse/practicals/blob/main/pint/pint_prd2.qmd
+        theme:
+            light: flatly
+            dark: darkly
         toc: true
         number-sections: true
         code-line-numbers: true
