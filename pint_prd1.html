@@ -71,18 +71,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
+  "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
+  "panel-placement": "start",
+  "type": "textbox",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -137,37 +135,51 @@ window.Quarto = {
 
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar floating slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link active" href="./pint_prd1.html" aria-current="page"> 
-<span class="menu-text">PINT practical 1</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./pint_prd2.html"> 
-<span class="menu-text">PINT practical 2</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-</div>
-      </div> <!-- /container-fluid -->
-    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pint_prd1.html">PINT practical 1</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pint_prd1.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">PINT practical 1</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pint_prd2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PINT practical 2</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -911,18 +923,18 @@ Slope: 1.000</code></pre>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># Validate the model</span></span>
 <span id="cb20-2"><a href="#cb20-2"></a><span class="fu">validate</span>(fit_rms)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>          index.orig training    test optimism index.corrected  n
-Dxy           0.5303   0.5382  0.5252   0.0130          0.5172 40
-R2            0.2726   0.2805  0.2671   0.0134          0.2592 40
-Intercept     0.0000   0.0000 -0.0085   0.0085         -0.0085 40
-Slope         1.0000   1.0000  0.9664   0.0336          0.9664 40
-Emax          0.0000   0.0000  0.0090   0.0090          0.0090 40
-D             0.2243   0.2318  0.2192   0.0126          0.2117 40
-U            -0.0009  -0.0009  0.0000  -0.0009          0.0000 40
-Q             0.2252   0.2327  0.2193   0.0135          0.2117 40
-B             0.1879   0.1864  0.1889  -0.0025          0.1904 40
-g             1.2470   1.2769  1.2307   0.0461          1.2008 40
-gp            0.2538   0.2575  0.2510   0.0065          0.2473 40</code></pre>
+<pre><code>          index.orig training   test optimism index.corrected  n
+Dxy           0.5303   0.5320 0.5251   0.0069          0.5233 40
+R2            0.2726   0.2754 0.2670   0.0083          0.2642 40
+Intercept     0.0000   0.0000 0.0013  -0.0013          0.0013 40
+Slope         1.0000   1.0000 0.9789   0.0211          0.9789 40
+Emax          0.0000   0.0000 0.0050   0.0050          0.0050 40
+D             0.2243   0.2269 0.2192   0.0077          0.2166 40
+U            -0.0009  -0.0009 0.0003  -0.0012          0.0003 40
+Q             0.2252   0.2278 0.2189   0.0089          0.2163 40
+B             0.1879   0.1866 0.1891  -0.0024          0.1903 40
+g             1.2470   1.2552 1.2267   0.0285          1.2185 40
+gp            0.2538   0.2539 0.2507   0.0032          0.2506 40</code></pre>
 </div>
 </div>
 <p>How do we interpret this output? The <code>validate()</code> function applies resampling, which is a method to account for overfitting, with the results being printed in the ‘index.corrected’ column. However, if we are just interested in the apparent performance, we can just look at ‘index.orig’. To calculate the C-statistic, we can use <span class="math inline">\(c = \frac{Dxy}{2} + 0.5\)</span>. In our case, the C-statistic would be:</p>
@@ -946,7 +958,7 @@ gp            0.2538   0.2575  0.2510   0.0065          0.2473 40</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-n=2159   Mean absolute error=0.005   Mean squared error=5e-05
+n=2159   Mean absolute error=0.006   Mean squared error=5e-05
 0.9 Quantile of absolute error=0.013</code></pre>
 </div>
 </div>
@@ -1129,26 +1141,26 @@ coxph(formula = Surv(time, status) ~ age + sex + ns(wt.loss,
 
   n= 228, number of events= 159 
 
-                                   coef exp(coef) se(coef)      z Pr(&gt;|z|)   
-age                             0.01751   1.01767  0.00948  1.848  0.06467 . 
-sex                            -0.54540   0.57961  0.17144 -3.181  0.00147 **
-ns(wt.loss, knots = c(1, 12))1 -0.34812   0.70601  0.50091 -0.695  0.48708   
-ns(wt.loss, knots = c(1, 12))2 -2.72517   0.06553  1.68250 -1.620  0.10529   
-ns(wt.loss, knots = c(1, 12))3 -1.10659   0.33069  0.93192 -1.187  0.23506   
+                                    coef exp(coef)  se(coef)      z Pr(&gt;|z|)   
+age                             0.017152  1.017300  0.009474  1.811  0.07022 . 
+sex                            -0.539257  0.583182  0.171639 -3.142  0.00168 **
+ns(wt.loss, knots = c(1, 12))1 -0.217009  0.804922  0.499500 -0.434  0.66396   
+ns(wt.loss, knots = c(1, 12))2 -2.970555  0.051275  1.676074 -1.772  0.07634 . 
+ns(wt.loss, knots = c(1, 12))3 -1.248597  0.286907  0.947628 -1.318  0.18764   
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
                                exp(coef) exp(-coef) lower .95 upper .95
-age                              1.01767     0.9826  0.998935    1.0368
-sex                              0.57961     1.7253  0.414196    0.8111
-ns(wt.loss, knots = c(1, 12))1   0.70601     1.4164  0.264506    1.8845
-ns(wt.loss, knots = c(1, 12))2   0.06553    15.2590  0.002423    1.7726
-ns(wt.loss, knots = c(1, 12))3   0.33069     3.0240  0.053230    2.0543
+age                              1.01730      0.983   0.99859    1.0364
+sex                              0.58318      1.715   0.41659    0.8164
+ns(wt.loss, knots = c(1, 12))1   0.80492      1.242   0.30240    2.1425
+ns(wt.loss, knots = c(1, 12))2   0.05127     19.503   0.00192    1.3696
+ns(wt.loss, knots = c(1, 12))3   0.28691      3.485   0.04478    1.8381
 
-Concordance= 0.606  (se = 0.025 )
-Likelihood ratio test= 17.97  on 5 df,   p=0.003
-Wald test            = 17.16  on 5 df,   p=0.004
-Score (logrank) test = 17.63  on 5 df,   p=0.003</code></pre>
+Concordance= 0.61  (se = 0.025 )
+Likelihood ratio test= 18.76  on 5 df,   p=0.002
+Wald test            = 17.91  on 5 df,   p=0.003
+Score (logrank) test = 18.42  on 5 df,   p=0.002</code></pre>
 </div>
 </div>
 <p>We see that weight loss has three coefficients, one for the lowest value through 1 (1), one for 1 through 12 (2), and one for 12 through the highest value (3). Also note that we do not have an intercept: to calculate the final predicted risk, we need to use the baseline hazard instead of the intercept. However, the baseline hazard is different for each timepoint.</p>
@@ -1157,7 +1169,7 @@ Score (logrank) test = 17.63  on 5 df,   p=0.003</code></pre>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="co"># Retrieve baseline hazard at 2 years</span></span>
 <span id="cb38-2"><a href="#cb38-2"></a><span class="fu">filter</span>(<span class="fu">basehaz</span>(fit), time <span class="sc">==</span> <span class="fl">365.25</span> <span class="sc">*</span> <span class="dv">2</span>)[[<span class="st">"hazard"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.144084</code></pre>
+<pre><code>[1] 2.146102</code></pre>
 </div>
 </div>
 <p>Discrimination of this model can be calculated using Harrell’s C-statistic: * The function <code>cindex()</code> from the <code>{dynpred}</code> package (does not require model fit, but does require development formula). * The function <code>rcorr.cens()</code> from the <code>{Hmisc}</code> package (does not require model fit, but may be slow). * The function <code>cIndex()</code> from the <code>{intsurv}</code> package.</p>
@@ -1303,150 +1315,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
-        }
-      }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
-      return false;
-    }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
