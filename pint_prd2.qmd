@@ -13,9 +13,6 @@ format:
         - text: Source code
           icon: file-code
           href: https://github.com/rjjanse/practicals/blob/main/pint/pint_prd2.qmd
-        theme:
-            light: flatly
-            dark: darkly
         toc: true
         number-sections: true
         code-line-numbers: true
@@ -66,7 +63,7 @@ tbi <- import(path)
 ```{r}
 #| echo: false
 # Specify path
-path <- "C:/Users/rjjan/OneDrive/Bureaublad/PINT practica/Practica PINT predictie/practical prediction - part 1/practical prediction - part 1/TBI.txt"
+path <- "C:/Users/rjjanse.LUMCNET/Downloads/TBI.txt"
 
 # Load TBI data
 tbi <- import(path)
@@ -216,7 +213,7 @@ summary(fit)
 ```
 
 ## Ridge regression
-Ridge regression, also known as $l_2$ regularization, applies a penalty to the maximum likelihood estimator, leading to shrinkage of the regression coefficients, which results in a less optimistic model. In the below formula, the white part shows the maximum likelihood estimator of a logsitic model and the red part the addition of the $l_2$ regularization:
+Ridge regression, also known as $l_2$ regularization, applies a penalty to the maximum likelihood estimator, leading to shrinkage of the regression coefficients, which results in a less optimistic model. In the below formula, the white part shows the maximum likelihood estimator of a logsitic model and the blue part the addition of the $l_2$ regularization:
 
 $$ 
 \log{L} = \sum_iy_i\log{\pi_i}+(1-y_i)\log{(1-\pi_i)}-\color{blue}{\lambda\sum_{j=1}^P\hat{\beta}_j^2}
@@ -238,7 +235,6 @@ x <- development %>%
 # Remove intercept column from x (makes output easier to read)
 x <- x[, -1]
     
-
 # Prepare outcome                                # <3>
 y <- development %>%
     # Select outcome
@@ -246,18 +242,22 @@ y <- development %>%
     # Change to matrix
     as.matrix()
 
-# Run cross-validation
+# Define range of lambdas 
+lambdas <- seq(0.001, 100, length.out = 3e4) # <4>
+
+# Run cross-validation (this might take a minute)
 cv_ridge <- cv.glmnet(x = x, 
                       y = y, 
                       family = "binomial",
                       type.measure = "mse",
-                      alpha = 0, # <4>
-                      nfolds = 10) # <5>
+                      lambda = lambdas, 
+                      alpha = 0, # <5>
+                      nfolds = 10) # <6>
 
 # Get optimal lambda
-(lambda <- cv_ridge[["lambda.min"]])         # <6>
+lambda <- cv_ridge[["lambda.min"]]         # <7>
 
-# Show results of cross-validation          # <7>
+# Show results of cross-validation          # <8>
 ggplot(mapping = aes(x = log(cv_ridge[["lambda"]]), y = cv_ridge[["cvm"]], 
                      ymin = cv_ridge[["cvlo"]], ymax = cv_ridge[["cvup"]])) +
     # Geometries
@@ -275,10 +275,17 @@ ggplot(mapping = aes(x = log(cv_ridge[["lambda"]]), y = cv_ridge[["cvm"]],
 1. The function `cv.glmnet()` requires a matrix with the predictors, where each row corresponds to an observation and each column a predictor. 
 2. Factors are not allowed in the x matrix, which means that we should already create dummy variables for the factors. The function `model.matrix()` does this for us.
 3. The outcome should also be given as a matrix or vector.
-4. We specify `alpha = 0` to indicate that we want to use ridge regression. If we use `alpha = 1`, we indicate LASSO regression. Anything in between would result in elastic net regression.
-5. We specify 10-fold cross-validation.
-6. The optimal $\lambda$ is derived by taking `lambda.min` from the results.
-7. We can show that the $\lambda$ we selected (the dashed line) is the one with the lowest mean squared error. The x-axis is in log scale for clarity.
+4. We specify our own range of lambda's we would like to test using cross-validation. Note that `glmnet()` can also do this on our own, but this may be [unreliable](https://stackoverflow.com/questions/23686067/default-lambda-sequence-in-glmnet-for-cross-validation).
+5. We specify `alpha = 0` to indicate that we want to use ridge regression. If we use `alpha = 1`, we indicate LASSO regression. Anything in between would result in elastic net regression.
+6. We specify 10-fold cross-validation.
+7. The optimal $\lambda$ is derived by taking `lambda.min` from the results.
+8. We can show that the $\lambda$ we selected (the dashed line) is the one with the lowest mean squared error. The x-axis is in log scale for clarity.
+
+Our optimal $\lambda$ value is then:
+
+```{r} 
+lambda
+```
 
 Now we can fit our ridge regression model:
 
@@ -298,7 +305,7 @@ data.frame(standard = fit[["coefficients"]],
 
 Comparing these coefficients to the standard model, we may observe that the coefficients are shrunk. If you have a polychotomous predictor, not all coefficients for that predictor might shrink.
 
-If we set $\lambda$ to 0, we can see that it will be the same as the standard logistic regression:
+If we set $\lambda$ to 0, we can see that it will be practically the same as the standard logistic regression:
 ```{r}
 # Fit ridge regression with lambda 0
 fit_glmnet <- glmnet(x = x,
@@ -313,8 +320,12 @@ data.frame(glm = fit[["coefficients"]],
 
 ```
 
+::: {.callout-note}
+Note that the regression coefficients are not exactly the same. This might be because `glm()` from `{stats}` and `glmnet()` from `{glmnet}` have implemented the estimation of the regression coefficients differently.
+:::
+
 ## LASSO regression
-The least absolute shrinkage and selection operator (LASSO) regression functions similar to ridge regression, except that it is able to shrink coefficients to 0, leading to removal of those predictors from the prediction model. It applies the $l_1$ penalty and is expressed as:
+The least absolute shrinkage and selection operator (LASSO) regression functions similar to ridge regression, except that it is able to shrink coefficients to 0, leading to removal of those predictors from the prediction model. It applies the $l_1$ penalty and is expressed in the red part as:
 
 $$ 
 \log{L} = \sum_iy_i\log{\pi_i}+(1-y_i)\log{(1-\pi_i)}-\color{red}{\lambda\sum_{j=1}^{P}\lvert\hat{\beta}_j\lvert}
@@ -322,19 +333,27 @@ $$
 
 ```{r}
 # Run cross-validation
-cv_ridge <- cv.glmnet(x = x, 
+cv_lasso <- cv.glmnet(x = x, 
                       y = y, 
                       family = "binomial",
                       type.measure = "mse",
+                      lambda = lambdas,
                       alpha = 1, # <1>
                       nfolds = 10) 
 
 # Get optimal lambda
-(lambda <- cv_ridge[["lambda.min"]])         
+lambda <- cv_lasso[["lambda.min"]]      
 
 ```
 
 1. Now we specify `alpha = 1`, indicating LASSO regression.
+
+Our optimal $\lambda$ value is now:
+
+```{r} 
+lambda
+```
+
 
 Using our newly estimated $\lambda$, we can fit a LASSO regression:
 
@@ -360,14 +379,36 @@ A special case is elastic net regression, where we combine the $l_1$ and $l_2$ p
 $$
 \log{L} = \sum_iy_i\log{\pi_i}+(1-y_i)\log{(1-\pi_i)}-
 \color{green}{\lambda}\left(
-\color{red}{\alpha\sum_{j=1}^{P}\lvert\hat{\beta}_j\lvert}+
-\color{blue}{\frac{1-\alpha}{2}\lambda\sum_{p=1}^P\hat{\beta}_p^2}\right)
+\color{red}{\alpha\sum_{j=1}^{P}\lvert\hat{\beta}_j\rvert}
+\color{black}{+}
+\color{blue}{\frac{1-\alpha}{2}\sum_{p=1}^P\hat{\beta}_p^2}\right)
 $$
 
-We can see that $\lambda$ applies to both penalties at the same time and that $\alpha$ determines to what extent each penalty is applied. For instance, we can perform an elastic net regression with an alpha of 0.5 as follows:
+We can see that $\lambda$ applies to both penalties at the same time and that $\alpha$ determines to what extent each penalty is applied. For instance, we can perform cross validation and an elastic net regression with an alpha of 0.5 as follows:
 
 ```{r}
-# Fit LASSO regression
+# Run cross-validation
+cv_elnet <- cv.glmnet(x = x, 
+                      y = y, 
+                      family = "binomial",
+                      type.measure = "mse",
+                      lambda = lambdas,
+                      alpha = 0.5,
+                      nfolds = 10) 
+
+# Get optimal lambda
+lambda <- cv_elnet[["lambda.min"]]    
+
+```
+
+Our $\lambda$ is:
+
+```{r}
+lambda
+```
+
+```{r}
+# Fit elastic net regression
 fit_elnet <- glmnet(x = x,
                     y = y,
                     family = "binomial",
@@ -380,7 +421,7 @@ data.frame(standard = fit[["coefficients"]],
 ```
 
 ::: {.callout-note}
-Note that for ridge regression, LASSO regression, and elastic net regression, we need to estimate separate $\lambda$'s.
+Note that when we estimate a $\lambda$ for a model, we cannot automatically use that same $\lambda$ for the same prediction model with a different shrinkage method. For instance, if I estimate a $\lambda$ for a ridge regression model with a set of predictors $X$ and outcome $Y$, I will need to reestimate $\lambda$ if I want to fit predictors $X$ for outcome $Y$ with a LASSO regression model.
 :::
 
 ## Performance
@@ -410,7 +451,6 @@ cstat <- function(fit, x, y, df){
 We do not need to create these functions. However, to keep our script legible and more efficient, we pooled together the calculation of C-statistics for glm and glmnet objects. Simply, it calculates the predictions based on whether the model was fitted using `glm()` or `glmnet()` and then uses the `roc()` function from `{pROC}` to calculate the C-statistic and return it.
 :::
 
-
 We will also need to create the x and y matrices of the validation data:
 ```{r}
 # Prepare predictors                            
@@ -434,7 +474,7 @@ y_val <- validation %>%
 
 Moreover, we will create a function to calculate the calibration intercept and slope for all models:
 ```{r}
-# Function to calculate calibration metrics
+# Function to calculate slope
 calmetrics <- function(fit, x = NULL, y = NULL, df = NULL){
     # Calculate predictions for glmnet output
     if("glmnet" %in% class(fit)) preds <- predict(fit, newx = x)
@@ -446,8 +486,7 @@ calmetrics <- function(fit, x = NULL, y = NULL, df = NULL){
     fit_cal <- glm(y ~ preds, family = binomial)
     
     # Get intercept and slope
-    results <- list(intercept = round(fit_cal[["coefficients"]][[1]], 3),
-                    slope = round(fit_cal[["coefficients"]][[2]], 3))
+    results <- round(fit_cal[["coefficients"]][[2]], 3)
     
     # Return results
     return(results)
@@ -527,22 +566,18 @@ kable(cstats)
 
 ```
 
-Let's also look at the calibration metrics
+Let's also look at the calibration slopes
 ```{r}
-# Calculate C-statistics
+# Calculate calibration slopes
 calibm <- tibble(model = rep(c("standard", "ridge", "lasso", "elastic net"), 2),
                  cohort = c(rep("development", 4), rep("validation", 4)),
-                 intercept = c(calmetrics(fit, y = y, df = development)[[1]], calmetrics(fit_ridge, x, y)[[1]], 
-                               calmetrics(fit_lasso, x, y)[[1]], calmetrics(fit_elnet, x, y)[[1]],
-                               calmetrics(fit, y = y_val, df = validation)[[1]], calmetrics(fit_ridge, x_val, y_val)[[1]], 
-                               calmetrics(fit_lasso, x_val, y_val)[[1]], calmetrics(fit_elnet, x_val, y_val)[[1]]),
-                 slope = c(calmetrics(fit, y = y, df = development)[[2]], calmetrics(fit_ridge, x, y)[[2]], 
-                           calmetrics(fit_lasso, x, y)[[2]], calmetrics(fit_elnet, x, y)[[2]],
-                           calmetrics(fit, y = y_val, df = validation)[[2]], calmetrics(fit_ridge, x_val, y_val)[[2]], 
-                           calmetrics(fit_lasso, x_val, y_val)[[2]], calmetrics(fit_elnet, x_val, y_val)[[2]]))
+                 slope = c(calmetrics(fit, y = y, df = development), calmetrics(fit_ridge, x, y), 
+                           calmetrics(fit_lasso, x, y), calmetrics(fit_elnet, x, y),
+                           calmetrics(fit, y = y_val, df = validation), calmetrics(fit_ridge, x_val, y_val), 
+                           calmetrics(fit_lasso, x_val, y_val), calmetrics(fit_elnet, x_val, y_val)))
 
 # Pivot data
-calibm %<>% pivot_wider(names_from = cohort, values_from = c(intercept, slope))
+calibm %<>% pivot_wider(names_from = cohort, values_from = slope)
 
 # Print calibration metrics 
 kable(calibm)
@@ -572,13 +607,13 @@ ggplot(dat_cal, mapping = aes(x = preds, y = obs, colour = cohort)) +
 
 ```
 
-What we see is that (although small for the C-statistics), the standard model performs better in the development data, but worse in the validation data. Note however that this does not have to be the case: [van Calster *et al.*](https://doi.org/10.1177/0962280220921415).
+What we see is that (although small for the C-statistics), the standard model performs better in the development data, but worse in the validation data. Because the improvement is only minimal, the calibration plots do not show much difference, but it is always good practice to show the calibration plots. Note however that this does not have to be the case: [van Calster *et al.*](https://doi.org/10.1177/0962280220921415).
 
 # Bootstrap-based uniform shrinkage
 The shrinkage methods we just saw work by adding a penalty to the maximum likelihood estimator. A different aprpoach is bootstrap-based uniform shrinkage, which calculates a shrinkage factor and uses this to penalize the estimated regression coefficients (instead of penalizing the estimator that estimates the coefficients). This is also the method used in the `{rms}` package as seen in the first practical.
 
 ## Development
-In short, we develop the prediction model on our full development data. Then, we bootstrap the data $B$ times and redevelop the model in each bootstrap sample $b$. Each redeveloped model is applied to the development data and a calibration slope is calculated. Then, the shrinkage factor $s$ equals the average calibration slope among all bootstrap samples. The final regression coefficients are then calculated as $\hat{\beta}_{j,shrunk} = \hat{\beta}_j * s$.
+In short, we develop the prediction model on our full development data. Then, we bootstrap the data $B$ times and redevelop the model in each bootstrap sample $b$. Each redeveloped model is applied to the development data and a calibration slope is calculated. Then, the shrinkage factor $s$ equals the average calibration slope among all bootstrap samples. The final regression coefficients are then calculated as $\hat{\beta}_{j,shrunk} = \hat{\beta}_j * s$. Finally, we recalibrate the model intercept.
 
 We already developed our standard model. For the bootstrapping, we can do:
 ```{r}
@@ -629,11 +664,25 @@ s <- sapply(1:b, \(x){ # <1>
 Now that we have $s$, we can multiply it with the coefficients of the standard model:
 ```{r}
 # Take coefficients from standard model and multiply by s
-coefs <- fit[["coefficients"]] * s
+coefs <- fit[["coefficients"]][2:9] * s
 
-# Compare coefficients
+```
+
+Lastly, using these coefficients, we need to re-estimate the intercept. We do this by using an offset, meaning we estimate the outcome as a function of the linear predictor, where the linear predictor is held constant (i.e. given a regression coefficient of 1).
+
+```{r}
+# Calculate linear predictors
+lps <- x %*% as.matrix(coefs)
+
+# Re-estimate intercept
+intercept <- glm(development[["d.unfav"]] ~ offset(lps), family = binomial)[["coefficients"]][[1]]
+
+# Combine intercept and coefficients
+bu <- c(intercept, coefs)
+
+# Compare models
 data.frame(standard = fit[["coefficients"]],
-           bu = coefs)
+           bootstrapped = bu)
 
 ```
 
@@ -644,7 +693,7 @@ Prior to validating the model, we will wrangle the existing model fit a bit so t
 fit_bu <- fit
 
 # Add updated coefficients
-fit_bu[["coefficients"]] <- coefs
+fit_bu[["coefficients"]] <- bu
 
 # Recalculate linear predictors
 # We perform matrix multiplication of each individual's values with the coefficients minus the intercept (as the matrix x does not contain this). Afterwards, we add the intercept again.
@@ -662,10 +711,8 @@ Now let's see the validation metrics:
 tibble(model = c("standard", "BU"),
        cstat_dev = c(cstat(fit, y = y, df = development), cstat(fit_bu, y = y, df = development)),
        cstat_val = c(cstat(fit, y = y_val, df = validation), cstat(fit_bu, y = y_val, df = validation)),
-       intercept_dev = c(calmetrics(fit, y = y, df = development)[[1]], calmetrics(fit_bu, y = y, df = development)[[1]]),
-       intercept_val = c(calmetrics(fit, y = y_val, df = validation)[[1]], calmetrics(fit_bu, y = y_val, df = validation)[[1]]),
-       slope_dev = c(calmetrics(fit, y = y, df = development)[[2]], calmetrics(fit_bu, y = y, df = development)[[2]]),
-       slope_val = c(calmetrics(fit, y = y_val, df = validation)[[2]], calmetrics(fit_bu, y = y_val, df = validation)[[2]]))
+       slope_dev = c(calmetrics(fit, y = y, df = development), calmetrics(fit_bu, y = y, df = development)),
+       slope_val = c(calmetrics(fit, y = y_val, df = validation), calmetrics(fit_bu, y = y_val, df = validation)))
 
 ```
 

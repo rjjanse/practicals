@@ -9,9 +9,9 @@ website:
         - section: "PINT"
           contents:
           - href: pint_prd1.qmd
-            text: Practical 1
+            text: Prediction 1
           - href: pint_prd2.qmd
-            text: Practical 2
+            text: Prediction 2
 
 format:
   html:

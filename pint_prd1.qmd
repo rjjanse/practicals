@@ -68,7 +68,7 @@ tbi <- import(path)
 ```{r}
 #| echo: false
 # Specify path
-path <- "C:/Users/rjjan/OneDrive/Bureaublad/PINT practica/Practica PINT predictie/practical prediction - part 1/practical prediction - part 1/TBI.txt"
+path <- "C:/Users/rjjanse.LUMCNET/Downloads/TBI.txt"
 
 # Load TBI data
 tbi <- import(path)

@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Roemer J. Janse">
-<meta name="dcterms.date" content="2024-11-14">
+<meta name="dcterms.date" content="2024-11-18">
 
 <title>PINT - Prediction Practical 1</title>
 <style>
@@ -35,7 +35,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -103,7 +103,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -141,13 +141,13 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pint_prd1.html">PINT</a></li><li class="breadcrumb-item"><a href="./pint_prd1.html">Practical 1</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pint_prd1.html">PINT</a></li><li class="breadcrumb-item"><a href="./pint_prd1.html">Prediction 1</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -166,9 +166,9 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
  <span class="menu-text">PINT</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -176,13 +176,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pint_prd1.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Practical 1</span></a>
+ <span class="menu-text">Prediction 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pint_prd2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Practical 2</span></a>
+ <span class="menu-text">Prediction 2</span></a>
   </div>
 </li>
       </ul>
@@ -232,7 +232,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pint_prd1.html">PINT</a></li><li class="breadcrumb-item"><a href="./pint_prd1.html">Practical 1</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pint_prd1.html">PINT</a></li><li class="breadcrumb-item"><a href="./pint_prd1.html">Prediction 1</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">PINT - Prediction Practical 1</h1>
 <p class="subtitle lead">Analysis and Reporting of Prediction Modelling Studies</p>
@@ -252,7 +252,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 14, 2024</p>
+      <p class="date">November 18, 2024</p>
     </div>
   </div>
   
@@ -327,7 +327,7 @@ fix the file write command that created the file to create a valid file.</code><
 <div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>lung</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Nonetheless, the other datasets remain visible as promises in your global environment, which can be rather messy.</p>
 </div></div><p>Below are the codebooks for both the TBI and the lung data.</p>
-<table class="table-striped table-hover table-sm small caption-top table">
+<table class="table-striped table-hover table-sm small table">
 <caption>Codebooks for the TBI and lung datasets</caption>
 <colgroup>
 <col style="width: 10%">
@@ -935,17 +935,17 @@ Slope: 1.000</code></pre>
 <span id="cb20-2"><a href="#cb20-2"></a><span class="fu">validate</span>(fit_rms)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          index.orig training    test optimism index.corrected  n
-Dxy           0.5303   0.5350  0.5255   0.0094          0.5208 40
-R2            0.2726   0.2773  0.2675   0.0098          0.2628 40
-Intercept     0.0000   0.0000 -0.0075   0.0075         -0.0075 40
-Slope         1.0000   1.0000  0.9777   0.0223          0.9777 40
-Emax          0.0000   0.0000  0.0062   0.0062          0.0062 40
-D             0.2243   0.2288  0.2196   0.0092          0.2151 40
+Dxy           0.5303   0.5293  0.5249   0.0043          0.5259 40
+R2            0.2726   0.2719  0.2667   0.0052          0.2674 40
+Intercept     0.0000   0.0000 -0.0076   0.0076         -0.0076 40
+Slope         1.0000   1.0000  0.9838   0.0162          0.9838 40
+Emax          0.0000   0.0000  0.0049   0.0049          0.0049 40
+D             0.2243   0.2237  0.2189   0.0048          0.2195 40
 U            -0.0009  -0.0009  0.0000  -0.0009          0.0000 40
-Q             0.2252   0.2297  0.2196   0.0101          0.2151 40
-B             0.1879   0.1869  0.1890  -0.0020          0.1899 40
-g             1.2470   1.2664  1.2328   0.0336          1.2134 40
-gp            0.2538   0.2558  0.2512   0.0046          0.2492 40</code></pre>
+Q             0.2252   0.2246  0.2189   0.0057          0.2195 40
+B             0.1879   0.1876  0.1889  -0.0014          0.1892 40
+g             1.2470   1.2474  1.2298   0.0176          1.2294 40
+gp            0.2538   0.2531  0.2510   0.0021          0.2517 40</code></pre>
 </div>
 </div>
 <p>How do we interpret this output? The <code>validate()</code> function applies resampling, which is a method to account for overfitting, with the results being printed in the ‘index.corrected’ column. However, if we are just interested in the apparent performance, we can just look at ‘index.orig’. To calculate the C-statistic, we can use <span class="math inline">\(c = \frac{Dxy}{2} + 0.5\)</span>. In our case, the C-statistic would be:</p>
@@ -969,8 +969,8 @@ gp            0.2538   0.2558  0.2512   0.0046          0.2492 40</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-n=2159   Mean absolute error=0.006   Mean squared error=5e-05
-0.9 Quantile of absolute error=0.013</code></pre>
+n=2159   Mean absolute error=0.004   Mean squared error=3e-05
+0.9 Quantile of absolute error=0.009</code></pre>
 </div>
 </div>
 </section>
@@ -1152,32 +1152,26 @@ coxph(formula = Surv(time, status) ~ age + sex + ns(wt.loss,
 
   n= 228, number of events= 159 
 
-                                     coef  exp(coef)   se(coef)      z Pr(&gt;|z|)
-age                             0.0167093  1.0168497  0.0094676  1.765  0.07758
-sex                            -0.5503945  0.5767222  0.1720588 -3.199  0.00138
-ns(wt.loss, knots = c(1, 12))1  0.0008066  1.0008069  0.4795702  0.002  0.99866
-ns(wt.loss, knots = c(1, 12))2 -1.2220258  0.2946327  1.4479702 -0.844  0.39869
-ns(wt.loss, knots = c(1, 12))3 -0.6886587  0.5022493  0.8805938 -0.782  0.43419
-                                 
-age                            . 
-sex                            **
-ns(wt.loss, knots = c(1, 12))1   
-ns(wt.loss, knots = c(1, 12))2   
-ns(wt.loss, knots = c(1, 12))3   
+                                    coef exp(coef)  se(coef)      z Pr(&gt;|z|)   
+age                             0.017314  1.017465  0.009472  1.828  0.06756 . 
+sex                            -0.541509  0.581870  0.171432 -3.159  0.00158 **
+ns(wt.loss, knots = c(1, 12))1 -0.229285  0.795102  0.497101 -0.461  0.64462   
+ns(wt.loss, knots = c(1, 12))2 -2.898793  0.055090  1.670729 -1.735  0.08273 . 
+ns(wt.loss, knots = c(1, 12))3 -1.128615  0.323481  0.924742 -1.220  0.22229   
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
                                exp(coef) exp(-coef) lower .95 upper .95
-age                               1.0168     0.9834   0.99815     1.036
-sex                               0.5767     1.7339   0.41163     0.808
-ns(wt.loss, knots = c(1, 12))1    1.0008     0.9992   0.39097     2.562
-ns(wt.loss, knots = c(1, 12))2    0.2946     3.3941   0.01725     5.033
-ns(wt.loss, knots = c(1, 12))3    0.5022     1.9910   0.08940     2.822
+age                              1.01746     0.9828  0.998750    1.0365
+sex                              0.58187     1.7186  0.415817    0.8142
+ns(wt.loss, knots = c(1, 12))1   0.79510     1.2577  0.300117    2.1065
+ns(wt.loss, knots = c(1, 12))2   0.05509    18.1522  0.002084    1.4561
+ns(wt.loss, knots = c(1, 12))3   0.32348     3.0914  0.052809    1.9815
 
-Concordance= 0.608  (se = 0.025 )
-Likelihood ratio test= 16.53  on 5 df,   p=0.005
-Wald test            = 15.67  on 5 df,   p=0.008
-Score (logrank) test = 16.05  on 5 df,   p=0.007</code></pre>
+Concordance= 0.609  (se = 0.025 )
+Likelihood ratio test= 18.63  on 5 df,   p=0.002
+Wald test            = 17.83  on 5 df,   p=0.003
+Score (logrank) test = 18.32  on 5 df,   p=0.003</code></pre>
 </div>
 </div>
 <p>We see that weight loss has three coefficients, one for the lowest value through 1 (1), one for 1 through 12 (2), and one for 12 through the highest value (3). Also note that we do not have an intercept: to calculate the final predicted risk, we need to use the baseline hazard instead of the intercept. However, the baseline hazard is different for each timepoint.</p>
@@ -1186,7 +1180,7 @@ Score (logrank) test = 16.05  on 5 df,   p=0.007</code></pre>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="co"># Retrieve baseline hazard at 2 years</span></span>
 <span id="cb38-2"><a href="#cb38-2"></a><span class="fu">filter</span>(<span class="fu">basehaz</span>(fit), time <span class="sc">==</span> <span class="fl">365.25</span> <span class="sc">*</span> <span class="dv">2</span>)[[<span class="st">"hazard"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.144991</code></pre>
+<pre><code>[1] 2.147027</code></pre>
 </div>
 </div>
 <p>Discrimination of this model can be calculated using Harrell’s C-statistic: * The function <code>cindex()</code> from the <code>{dynpred}</code> package (does not require model fit, but does require development formula). * The function <code>rcorr.cens()</code> from the <code>{Hmisc}</code> package (does not require model fit, but may be slow). * The function <code>cIndex()</code> from the <code>{intsurv}</code> package.</p>
@@ -1244,9 +1238,9 @@ Using <code>predict()</code>
 <p>This practical was developed on:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>R version 4.4.1 (2024-06-14 ucrt)
+<pre><code>R version 4.4.0 (2024-04-24 ucrt)
 Platform: x86_64-w64-mingw32/x64
-Running under: Windows 11 x64 (build 22631)
+Running under: Windows 10 x64 (build 19045)
 
 Matrix products: default
 
@@ -1266,45 +1260,46 @@ attached base packages:
 [8] base     
 
 other attached packages:
- [1] ggExtra_0.10.1    ggplot2_3.5.1     mice_3.16.0       survival_3.6-4   
- [5] rms_6.8-2         Hmisc_5.1-3       pROC_1.18.5       DescTools_0.99.56
- [9] rio_1.2.1         magrittr_2.0.3    dplyr_1.1.4      
+ [1] ggExtra_0.10.1    ggplot2_3.5.1     mice_3.16.0       survival_3.5-8   
+ [5] rms_6.8-2         Hmisc_5.1-3       pROC_1.18.5       DescTools_0.99.58
+ [9] rio_1.2.2         magrittr_2.0.3    dplyr_1.1.4      
 
 loaded via a namespace (and not attached):
   [1] gridExtra_2.3      gld_2.6.6          sandwich_3.1-1    
   [4] readxl_1.4.3       rlang_1.1.4        multcomp_1.4-26   
-  [7] e1071_1.7-14       polspline_1.1.25   compiler_4.4.1    
+  [7] e1071_1.7-16       polspline_1.1.25   compiler_4.4.0    
  [10] mgcv_1.9-1         vctrs_0.6.5        quantreg_5.98     
  [13] stringr_1.5.1      pkgconfig_2.0.3    shape_1.4.6.1     
  [16] fastmap_1.2.0      backports_1.5.0    labeling_0.4.3    
- [19] utf8_1.2.4         promises_1.3.0     rmarkdown_2.27    
- [22] nloptr_2.1.1       MatrixModels_0.5-3 purrr_1.0.2       
- [25] xfun_0.46          glmnet_4.1-8       jomo_2.7-6        
- [28] jsonlite_1.8.8     later_1.3.2        pan_1.9           
- [31] broom_1.0.6        cluster_2.1.6      R6_2.5.1          
- [34] stringi_1.8.4      boot_1.3-30        rpart_4.1.23      
- [37] cellranger_1.1.0   Rcpp_1.0.13        iterators_1.0.14  
- [40] knitr_1.48         zoo_1.8-12         R.utils_2.12.3    
- [43] base64enc_0.1-3    pacman_0.5.1       httpuv_1.6.15     
- [46] Matrix_1.7-0       nnet_7.3-19        tidyselect_1.2.1  
- [49] rstudioapi_0.16.0  yaml_2.3.10        codetools_0.2-20  
- [52] miniUI_0.1.1.1     lattice_0.22-6     tibble_3.2.1      
- [55] plyr_1.8.9         shiny_1.9.1        withr_3.0.1       
- [58] evaluate_0.24.0    foreign_0.8-86     proxy_0.4-27      
- [61] pillar_1.9.0       checkmate_2.3.2    foreach_1.5.2     
- [64] generics_0.1.3     munsell_0.5.1      scales_1.3.0      
- [67] rootSolve_1.8.2.4  minqa_1.2.7        xtable_1.8-4      
- [70] class_7.3-22       glue_1.7.0         lmom_3.0          
- [73] tools_4.4.1        data.table_1.15.4  lme4_1.1-35.5     
- [76] SparseM_1.84-2     Exact_3.3          mvtnorm_1.3-1     
- [79] grid_4.4.1         tidyr_1.3.1        colorspace_2.1-1  
- [82] nlme_3.1-164       htmlTable_2.4.3    Formula_1.2-5     
- [85] cli_3.6.3          fansi_1.0.6        expm_1.0-0        
- [88] gtable_0.3.5       R.methodsS3_1.8.2  digest_0.6.36     
- [91] TH.data_1.1-2      farver_2.1.2       htmlwidgets_1.6.4 
- [94] R.oo_1.26.0        htmltools_0.5.8.1  lifecycle_1.0.4   
- [97] httr_1.4.7         mitml_0.4-5        mime_0.12         
-[100] MASS_7.3-60.2     </code></pre>
+ [19] utf8_1.2.4         promises_1.3.0     rmarkdown_2.28    
+ [22] haven_2.5.4        nloptr_2.1.1       MatrixModels_0.5-3
+ [25] purrr_1.0.2        xfun_0.47          glmnet_4.1-8      
+ [28] jomo_2.7-6         jsonlite_1.8.8     later_1.3.2       
+ [31] pan_1.9            broom_1.0.6        cluster_2.1.6     
+ [34] R6_2.5.1           stringi_1.8.4      boot_1.3-30       
+ [37] rpart_4.1.23       cellranger_1.1.0   Rcpp_1.0.13       
+ [40] iterators_1.0.14   knitr_1.48         zoo_1.8-12        
+ [43] R.utils_2.12.3     base64enc_0.1-3    pacman_0.5.1      
+ [46] httpuv_1.6.15      Matrix_1.7-0       nnet_7.3-19       
+ [49] tidyselect_1.2.1   rstudioapi_0.16.0  yaml_2.3.10       
+ [52] codetools_0.2-20   miniUI_0.1.1.1     lattice_0.22-6    
+ [55] tibble_3.2.1       plyr_1.8.9         shiny_1.9.1       
+ [58] withr_3.0.1        evaluate_0.24.0    foreign_0.8-86    
+ [61] proxy_0.4-27       pillar_1.9.0       checkmate_2.3.2   
+ [64] foreach_1.5.2      generics_0.1.3     hms_1.1.3         
+ [67] munsell_0.5.1      scales_1.3.0       rootSolve_1.8.2.4 
+ [70] minqa_1.2.8        xtable_1.8-4       class_7.3-22      
+ [73] glue_1.7.0         lmom_3.2           tools_4.4.0       
+ [76] data.table_1.16.0  lme4_1.1-35.5      SparseM_1.84-2    
+ [79] forcats_1.0.0      Exact_3.3          mvtnorm_1.3-1     
+ [82] grid_4.4.0         tidyr_1.3.1        colorspace_2.1-1  
+ [85] nlme_3.1-164       htmlTable_2.4.3    Formula_1.2-5     
+ [88] cli_3.6.3          fansi_1.0.6        expm_1.0-0        
+ [91] gtable_0.3.5       R.methodsS3_1.8.2  digest_0.6.37     
+ [94] TH.data_1.1-2      farver_2.1.2       htmlwidgets_1.6.4 
+ [97] R.oo_1.26.0        htmltools_0.5.8.1  lifecycle_1.0.4   
+[100] httr_1.4.7         mime_0.12          mitml_0.4-5       
+[103] MASS_7.3-60.2     </code></pre>
 </div>
 </div>
 
@@ -1347,7 +1342,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1379,29 +1385,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/rjjanse\.github\.io\/practicals\/");
@@ -1409,7 +1393,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
